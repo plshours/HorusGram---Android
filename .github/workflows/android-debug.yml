@@ -123,7 +123,14 @@ jobs:
         run: |
           log="$RUNNER_TEMP/build.log"
           [ -f "$log" ] || exit 0
-          found=$(grep -E '(^e: |: error:|error: |FAILED|What went wrong|Could not )' "$log" | head -40)
+          # Compiler errors, then Gradle's own explanation, then every cause of
+          # the stack trace: the root cause is usually the last of those, and
+          # the logs themselves can only be read when signed in.
+          found=$(
+            grep -E '(^e: |: error:|^ERROR:)' "$log" | head -30
+            sed -n '/^\* What went wrong:/,/^\* Try:/p' "$log" | grep -v '^\* Try:' | head -40
+            grep -E '^Caused by: ' "$log" | sed 's/^Caused by: //' | awk '!seen[$0]++' | head -20
+          )
           if [ -z "$found" ]; then
             found=$(tail -40 "$log")
           fi
@@ -133,9 +140,9 @@ jobs:
             echo "$found"
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
-          while IFS= read -r line; do
-            echo "::error::$line"
-          done <<< "$found"
+          # GitHub shows ten annotations per step, so the whole report goes into one.
+          message=$(printf '%s' "$found" | head -c 3500 | sed ':a;N;$!ba;s/%/%25/g;s/\r//g;s/\n/%0A/g')
+          echo "::error title=Build failed::$message"
 
       - name: Upload build log
         if: always()
