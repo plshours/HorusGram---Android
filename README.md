@@ -1,29 +1,31 @@
-# 🐾 Nekogram
-[![Crowdin](https://badges.crowdin.net/e/a094217ac83905ae1625526d59bba8dc/localized.svg)](https://neko.crowdin.com/nekogram)  
-Nekogram is a third-party Telegram client with not many but useful modifications.
+# HorusGram for Android
 
-- Website: https://nekogram.app
-- Telegram channel: https://t.me/nekoupdates
-- Downloads: https://nekogram.app/download
-- Feedback: https://github.com/Nekogram/Nekogram/issues
+HorusGram is an unofficial Telegram client. This is its Android version, built on [Nekogram](https://github.com/Nekogram/Nekogram), which is built on [Telegram for Android](https://github.com/DrKLO/Telegram). The desktop version is [HorusGram Desktop](https://github.com/plshours/HoursGram-Desktop).
 
-## API, Protocol documentation
+What HorusGram adds, and where everything comes from, is in [NOTICE.md](NOTICE.md). Nekogram's own readme is kept as [NEKOGRAM_README.md](NEKOGRAM_README.md).
 
-Telegram API manuals: https://core.telegram.org/api
+## Getting an APK
 
-MTProto protocol manuals: https://core.telegram.org/mtproto
+Every push to `main` or to a `feature/...` branch builds a debug APK on GitHub Actions: open the **Actions** tab, the latest run of *HorusGram Android Debug Build*, and download **HorusGram-Android-debug** at the bottom. A manual run (*Run workflow*) can build for more architectures than `arm64-v8a`.
 
-## Compilation Guide
+Repository secrets the build reads:
 
-1. Download the Nekogram source code ( `git clone --recursive --shallow-submodules https://github.com/Nekogram/Nekogram.git` )
-1. Fill out storeFile, storePassword, keyAlias, keyPassword in local.properties to access your release.keystore
-1. Go to https://console.firebase.google.com/, create two android apps with application IDs tw.nekomimi.nekogram and tw.nekomimi.nekogram.beta, turn on firebase messaging and download `google-services.json`, which should be copied into `TMessagesProj` folder.
-1. Open the project in the Studio (note that it should be opened, NOT imported).
-1. Fill out values in `TMessagesProj/src/main/java/tw/nekomimi/nekogram/Extra.java` – there’s a link for each of the variables showing where and which data to obtain.
-1. You are ready to compile Nekogram.
+| Secret | What it is |
+|---|---|
+| `TELEGRAM_API_ID`, `TELEGRAM_API_HASH` | your own credentials from <https://my.telegram.org>. Without them the build uses public development values. |
+| `GOOGLE_SERVICES_JSON` | optional: `google-services.json` of your Firebase project for the package names `com.horusgram.android` and `com.horusgram.android.beta`, base64-encoded. Without it there are no Firebase push notifications. |
 
-## Localization
+## Building on your computer
 
-Nekogram is forked from Telegram, thus most locales follows the translations of Telegram for Android, checkout https://translations.telegram.org/en/android/.
+1. `git clone --recursive https://github.com/plshours/HorusGram---Android.git`
+2. Write `apiId=...` and `apiHash=...` into `local.properties`.
+3. Copy `Tools/horusgram/google-services.placeholder.json` to `TMessagesProj_App/google-services.json`, or put your own file there.
+4. `./gradlew :TMessagesProj_App:assembleDebug -PhorusAbis=arm64-v8a`
 
-As for the Nekogram specialized strings, we use Crowdin to translate Nekogram. Join project at https://neko.crowdin.com/nekogram. Help us bring Nekogram to the world!
+## The theme
+
+`TMessagesProj/src/main/assets/horusgram.attheme` is generated from Telegram's Night theme:
+
+    python Tools/horusgram/make_horusgram_theme.py TMessagesProj/src/main/assets/night.attheme TMessagesProj/src/main/assets/horusgram.attheme
+
+Change the colors in the script, not in the generated file.

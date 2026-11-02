@@ -156,6 +156,8 @@ import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 import tw.nekomimi.nekogram.helpers.PasscodeHelper;
 import tw.nekomimi.nekogram.session.SessionQr;
+import com.horusgram.settings.HorusCustomizationActivity;
+
 import tw.nekomimi.nekogram.settings.NekoSettingsActivity;
 
 public class SettingsActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, ImageUpdater.ImageUpdaterDelegate, MainTabsActivity.TabFragmentDelegate, FactorAnimator.Target {
@@ -742,6 +744,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             items.add(UItem.asShadow(null));
         }
 
+        items.add(SettingCell.Factory.of(51, 0xFF8993D8, 0xFF5A6090, R.drawable.msg_theme, getString(R.string.HorusCustomization)));
         items.add(SettingCell.Factory.of(50, 0xFFD1E4FF, 0xFF9EC5FF, R.drawable.filled_profile_settings, getString(R.string.NekoSettings)));
 
         items.add(UItem.asShadow(null));
@@ -926,6 +929,10 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             }
             case 50: {
                 presentSettingFragment(new NekoSettingsActivity());
+                break;
+            }
+            case 51: {
+                presentSettingFragment(new HorusCustomizationActivity());
                 break;
             }
             case 24: {

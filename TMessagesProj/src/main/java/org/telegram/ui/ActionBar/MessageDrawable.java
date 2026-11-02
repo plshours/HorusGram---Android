@@ -21,6 +21,8 @@ import android.graphics.drawable.NinePatchDrawable;
 
 import androidx.core.graphics.ColorUtils;
 
+import com.horusgram.HorusConfig;
+
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
@@ -84,6 +86,9 @@ public class MessageDrawable extends Drawable {
             {0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff},
             {0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff}
     };
+
+    // HorusConfig.tailVersion the cached backgrounds were drawn for.
+    private int tailVersion = -1;
 
     public static final int TYPE_TEXT = 0;
     public static final int TYPE_MEDIA = 1;
@@ -326,6 +331,7 @@ public class MessageDrawable extends Drawable {
     }
 
     public Drawable getBackgroundDrawable() {
+        checkTailVersion();
         int newRad;
         if (overrideRoundRadius != 0) {
             newRad = overrideRoundRadius;
@@ -446,6 +452,7 @@ public class MessageDrawable extends Drawable {
     }
 
     public Drawable getShadowDrawable() {
+        checkTailVersion();
         if (isCrossfadeBackground) {
             return null;
         }
@@ -672,11 +679,45 @@ public class MessageDrawable extends Drawable {
         return path;
     }
 
+    private void checkTailVersion() {
+        if (tailVersion == HorusConfig.tailVersion) {
+            return;
+        }
+        tailVersion = HorusConfig.tailVersion;
+        Arrays.fill(currentShadowDrawableRadius, -1);
+        for (int[] radius : currentBackgroundDrawableRadius) {
+            Arrays.fill(radius, -1);
+        }
+    }
+
+    // The bubble of a text message without its tail, for the per-side tail
+    // setting of HorusGram: a rounded rectangle in the place the bubble takes
+    // with a tail, so the text inside does not move. The corner on the tail
+    // side follows the group, as the corners of media bubbles do.
+    private void generateTaillessPath(Path path, Rect bounds, int padding, int rad, int nearRad) {
+        int topRad = isTopNear ? nearRad : rad;
+        int tailRad = isBottomNear || botButtonsBottom ? nearRad : rad;
+        int farRad = botButtonsBottom ? nearRad : rad;
+        float[] radii;
+        if (isOut) {
+            rect.set(bounds.left + padding, bounds.top + padding, bounds.right - dp(8), bounds.bottom - padding);
+            radii = new float[]{rad, rad, topRad, topRad, tailRad, tailRad, farRad, farRad};
+        } else {
+            rect.set(bounds.left + dp(8), bounds.top + padding, bounds.right - padding, bounds.bottom - padding);
+            radii = new float[]{topRad, topRad, rad, rad, farRad, farRad, tailRad, tailRad};
+        }
+        path.addRoundRect(rect, radii, Path.Direction.CW);
+    }
+
     private void generatePath(Path path, Rect bounds, int padding, int rad, int smallRad, int nearRad, int top, boolean drawFullBottom, boolean drawFullTop, boolean customPaint) {
         path.rewind();
         int heightHalf = (bounds.height() - padding) >> 1;
         if (rad > heightHalf) {
             rad = heightHalf;
+        }
+        if (currentType == TYPE_TEXT && !HorusConfig.hasTail(isOut)) {
+            generateTaillessPath(path, bounds, padding, rad, Math.min(nearRad, heightHalf));
+            return;
         }
         if (isOut) {
             // LEFT-BOTTOM <- RIGHT-BOTTOM

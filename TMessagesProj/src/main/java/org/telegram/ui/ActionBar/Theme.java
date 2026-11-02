@@ -147,6 +147,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.CountDownLatch;
 
+import com.horusgram.HorusPalette;
 import tw.nekomimi.nekogram.helpers.MonetHelper;
 
 public class Theme {
@@ -1657,7 +1658,7 @@ public class Theme {
             if (isDark != UNKNOWN) {
                 return isDark == DARK;
             }
-            if ("Dark Blue".equals(name) || "Night".equals(name) || "AMOLED".equals(name) || "Monet Dark".equals(name) || "Monet AMOLED".equals(name)) {
+            if ("Dark Blue".equals(name) || "Night".equals(name) || "AMOLED".equals(name) || "Monet Dark".equals(name) || "Monet AMOLED".equals(name) || HorusPalette.THEME_NAME.equals(name)) {
                 isDark = DARK;
             } else if ("Blue".equals(name) || "Arctic Blue".equals(name) || "Day".equals(name) || "Monet Light".equals(name)) {
                 isDark = LIGHT;
@@ -4057,6 +4058,17 @@ public class Theme {
         themes.add(themeInfo);
         themesDict.put("AMOLED", themeInfo);
 
+        // HorusGram: the theme of HorusGram Desktop, with the picks of HorusGram settings laid over it.
+        themeInfo = new ThemeInfo();
+        themeInfo.name = HorusPalette.THEME_NAME;
+        themeInfo.assetName = HorusPalette.ASSET_NAME;
+        themeInfo.previewBackgroundColor = 0xff343641;
+        themeInfo.previewInColor = 0xff282a34;
+        themeInfo.previewOutColor = 0xff46485b;
+        themeInfo.sortIndex = 0;
+        themes.add(themeInfo);
+        themesDict.put(HorusPalette.THEME_NAME, themeInfo);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             themeInfo = new ThemeInfo();
             themeInfo.name = "Monet Light";
@@ -4139,7 +4151,7 @@ public class Theme {
         try {
             final ThemeInfo themeDarkBlue = themesDict.get("Dark Blue");
 
-            String theme = preferences.getString("theme", null);
+            String theme = preferences.getString("theme", HorusPalette.THEME_NAME);
             if ("Default".equals(theme)) {
                 applyingTheme = themesDict.get("Blue");
                 applyingTheme.currentAccentId = DEFALT_THEME_ACCENT_ID;
@@ -4155,7 +4167,7 @@ public class Theme {
                 }
             }
 
-            theme = preferences.getString("nighttheme", null);
+            theme = preferences.getString("nighttheme", HorusPalette.THEME_NAME);
             if ("Default".equals(theme)) {
                 applyingTheme = themesDict.get("Blue");
                 applyingTheme.currentAccentId = DEFALT_THEME_ACCENT_ID;
@@ -7700,6 +7712,9 @@ public class Theme {
                 }
             }
             stringMap.put(key_wallpaperFileOffset, wallpaperFileOffset);
+            if (HorusPalette.ASSET_NAME.equals(assetName)) {
+                HorusPalette.apply(stringMap);
+            }
         } catch (Throwable e) {
             FileLog.e(e);
         } finally {

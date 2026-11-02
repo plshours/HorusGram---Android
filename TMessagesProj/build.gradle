@@ -137,6 +137,14 @@ android {
     defaultConfig {
         vectorDrawables.generatedDensities = ['mdpi', 'hdpi', 'xhdpi', 'xxhdpi']
 
+        // HorusGram: -PhorusAbis=arm64-v8a builds the native code for those
+        // architectures only, which is what keeps a CI build within hours.
+        if (project.hasProperty('horusAbis')) {
+            ndk {
+                abiFilters.addAll(project.property('horusAbis').toString().split(','))
+            }
+        }
+
         externalNativeBuild {
             cmake {
                 version '3.22.1'

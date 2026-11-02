@@ -25,7 +25,8 @@ public class Extra {
     };
 
     public static UserHelper.BotInfo getHelperBot() {
-        if (BuildConfig.HELPER_BOT_USERNAME == null) {
+        // A build without the secret writes the word "null" into BuildConfig.
+        if (BuildConfig.HELPER_BOT_USERNAME == null || "null".equals(BuildConfig.HELPER_BOT_USERNAME) || BuildConfig.HELPER_BOT_ID == 0) {
             return null;
         }
         return HELPER_BOT;
