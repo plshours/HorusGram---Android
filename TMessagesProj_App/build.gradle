@@ -88,7 +88,9 @@ android {
 
         multiDexEnabled true
 
-        manifestPlaceholders = [MAPS_API_KEY: localProperties.get("mapsApiKey")]
+        // Without a Maps key the placeholder must still be a string: AGP fails
+        // to create its tasks on a null value.
+        manifestPlaceholders = [MAPS_API_KEY: localProperties.getProperty("mapsApiKey", "")]
     }
 
     splits.abi {
