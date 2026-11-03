@@ -1658,9 +1658,9 @@ public class Theme {
             if (isDark != UNKNOWN) {
                 return isDark == DARK;
             }
-            if ("Dark Blue".equals(name) || "Night".equals(name) || "AMOLED".equals(name) || "Monet Dark".equals(name) || "Monet AMOLED".equals(name) || HorusPalette.THEME_NAME.equals(name)) {
+            if ("Dark Blue".equals(name) || "Night".equals(name) || "AMOLED".equals(name) || "Monet Dark".equals(name) || "Monet AMOLED".equals(name) || HorusPalette.THEME_NAME.equals(name) || HorusPalette.MAC_DARK_NAME.equals(name)) {
                 isDark = DARK;
-            } else if ("Blue".equals(name) || "Arctic Blue".equals(name) || "Day".equals(name) || "Monet Light".equals(name)) {
+            } else if ("Blue".equals(name) || "Arctic Blue".equals(name) || "Day".equals(name) || "Monet Light".equals(name) || HorusPalette.MAC_LIGHT_NAME.equals(name)) {
                 isDark = LIGHT;
             }
             if (isDark == UNKNOWN) {
@@ -4069,6 +4069,27 @@ public class Theme {
         themes.add(themeInfo);
         themesDict.put(HorusPalette.THEME_NAME, themeInfo);
 
+        // HorusGram: the two looks of Telegram for macOS that HorusGram Desktop has as well.
+        themeInfo = new ThemeInfo();
+        themeInfo.name = HorusPalette.MAC_DARK_NAME;
+        themeInfo.assetName = HorusPalette.MAC_DARK_ASSET;
+        themeInfo.previewBackgroundColor = 0xff18222d;
+        themeInfo.previewInColor = 0xff1e2c3b;
+        themeInfo.previewOutColor = 0xff2a3447;
+        themeInfo.sortIndex = 0;
+        themes.add(themeInfo);
+        themesDict.put(HorusPalette.MAC_DARK_NAME, themeInfo);
+
+        themeInfo = new ThemeInfo();
+        themeInfo.name = HorusPalette.MAC_LIGHT_NAME;
+        themeInfo.assetName = HorusPalette.MAC_LIGHT_ASSET;
+        themeInfo.previewBackgroundColor = 0xffffffff;
+        themeInfo.previewInColor = 0xfff0f0f0;
+        themeInfo.previewOutColor = 0xff2f65b1;
+        themeInfo.sortIndex = 0;
+        themes.add(themeInfo);
+        themesDict.put(HorusPalette.MAC_LIGHT_NAME, themeInfo);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             themeInfo = new ThemeInfo();
             themeInfo.name = "Monet Light";
@@ -4342,7 +4363,8 @@ public class Theme {
                 oldEditorNew.commit();
             }
 
-            selectedAutoNightType = preferences.getInt("selectedAutoNightType", Build.VERSION.SDK_INT >= 29 ? AUTO_NIGHT_TYPE_SYSTEM : AUTO_NIGHT_TYPE_NONE);
+            // HorusGram: the theme stays as picked; following the system would swap the dark HorusGram theme for Blue every day.
+            selectedAutoNightType = preferences.getInt("selectedAutoNightType", AUTO_NIGHT_TYPE_NONE);
             autoNightScheduleByLocation = preferences.getBoolean("autoNightScheduleByLocation", false);
             autoNightBrighnessThreshold = preferences.getFloat("autoNightBrighnessThreshold", 0.25f);
             autoNightDayStartTime = preferences.getInt("autoNightDayStartTime", 22 * 60);

@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- HorusGram strings. -->
 <resources>
+    <string name="HorusCustomization">Оформление HorusGram</string>
     <string name="HorusTheme">Тема</string>
+    <string name="HorusThemeMain">HorusGram</string>
+    <string name="HorusThemeMacDark">macOS тёмная</string>
+    <string name="HorusThemeMacLight">macOS светлая</string>
     <string name="HorusApplyTheme">Включить тему HorusGram</string>
     <string name="HorusApplyThemeInfo">Цвета ниже относятся к теме HorusGram и видны, пока она включена.</string>
     <string name="HorusBaseColors">Основные цвета</string>

@@ -33,6 +33,10 @@ public final class HorusPalette {
 
     public static final String THEME_NAME = "HorusGram";
     public static final String ASSET_NAME = "horusgram.attheme";
+    public static final String MAC_DARK_NAME = "HorusGram macOS Dark";
+    public static final String MAC_DARK_ASSET = "horusgram_mac_dark.attheme";
+    public static final String MAC_LIGHT_NAME = "HorusGram macOS Light";
+    public static final String MAC_LIGHT_ASSET = "horusgram_mac_light.attheme";
 
     private static final String PREFS = "horusgram_palette";
     private static final String SLOT_PREFIX = "slot/";

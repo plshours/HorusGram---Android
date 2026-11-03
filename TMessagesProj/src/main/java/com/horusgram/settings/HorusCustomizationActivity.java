@@ -42,7 +42,9 @@ public class HorusCustomizationActivity extends BaseNekoSettingsActivity impleme
     private static final int SLOT_ROW = 1000;
     private static final int GROUP_ROW = 2000;
 
-    private final int applyThemeRow = rowId++;
+    private final int themeHorusRow = rowId++;
+    private final int themeMacDarkRow = rowId++;
+    private final int themeMacLightRow = rowId++;
     private final int inTailRow = rowId++;
     private final int outTailRow = rowId++;
     private final int backgroundRow = rowId++;
@@ -71,10 +73,17 @@ public class HorusCustomizationActivity extends BaseNekoSettingsActivity impleme
     protected void fillItems(ArrayList<UItem> items, UniversalAdapter adapter) {
         boolean horusActive = HorusPalette.isHorusTheme(Theme.getActiveTheme());
 
+        // The three themes HorusGram Desktop has, picked like a radio group.
+        String activeAsset = Theme.getActiveTheme() != null ? Theme.getActiveTheme().assetName : null;
         items.add(UItem.asHeader(LocaleController.getString(R.string.HorusTheme)));
+        items.add(UItem.asCheck(themeHorusRow, LocaleController.getString(R.string.HorusThemeMain)).slug("themeHorus").setChecked(HorusPalette.ASSET_NAME.equals(activeAsset)));
+        items.add(UItem.asCheck(themeMacDarkRow, LocaleController.getString(R.string.HorusThemeMacDark)).slug("themeMacDark").setChecked(HorusPalette.MAC_DARK_ASSET.equals(activeAsset)));
+        items.add(UItem.asCheck(themeMacLightRow, LocaleController.getString(R.string.HorusThemeMacLight)).slug("themeMacLight").setChecked(HorusPalette.MAC_LIGHT_ASSET.equals(activeAsset)));
         if (!horusActive) {
-            items.add(UItem.asButton(applyThemeRow, R.drawable.msg_theme, LocaleController.getString(R.string.HorusApplyTheme)).accent());
             items.add(UItem.asShadow(LocaleController.getString(R.string.HorusApplyThemeInfo)));
+            items.add(UItem.asHeader(LocaleController.getString(R.string.HorusBaseColors)));
+        } else {
+            items.add(UItem.asShadow(null));
             items.add(UItem.asHeader(LocaleController.getString(R.string.HorusBaseColors)));
         }
         for (int i = 0; i < HorusPalette.SLOTS.length; i++) {
@@ -103,10 +112,15 @@ public class HorusCustomizationActivity extends BaseNekoSettingsActivity impleme
     @Override
     protected void onItemClick(UItem item, View view, int position, float x, float y) {
         int id = item.id;
-        if (id == applyThemeRow) {
-            Theme.ThemeInfo horus = Theme.getTheme(HorusPalette.THEME_NAME);
-            if (horus != null) {
-                NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needSetDayNightTheme, horus, false, null, -1);
+        if (id == themeHorusRow || id == themeMacDarkRow || id == themeMacLightRow) {
+            String name = id == themeHorusRow
+                    ? HorusPalette.THEME_NAME
+                    : id == themeMacDarkRow
+                    ? HorusPalette.MAC_DARK_NAME
+                    : HorusPalette.MAC_LIGHT_NAME;
+            Theme.ThemeInfo theme = Theme.getTheme(name);
+            if (theme != null && theme != Theme.getActiveTheme()) {
+                NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needSetDayNightTheme, theme, false, null, -1);
             }
         } else if (id >= SLOT_ROW && id < SLOT_ROW + HorusPalette.SLOTS.length) {
             HorusPalette.Slot slot = HorusPalette.SLOTS[id - SLOT_ROW];

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- HorusGram strings. -->
 <resources>
-    <string name="HorusCustomization" translatable="false">HorusGram</string>
+    <string name="HorusCustomization">HorusGram Appearance</string>
     <string name="HorusTheme">Theme</string>
+    <string name="HorusThemeMain">HorusGram</string>
+    <string name="HorusThemeMacDark">macOS Dark</string>
+    <string name="HorusThemeMacLight">macOS Light</string>
     <string name="HorusApplyTheme">Use the HorusGram theme</string>
     <string name="HorusApplyThemeInfo">The colors below are those of the HorusGram theme. They show in the app while that theme is on.</string>
     <string name="HorusBaseColors">Base colors</string>
