@@ -34,6 +34,8 @@ public final class HorusGhost {
 
     // Messages deleted by others stay in the chat with a mark.
     public static volatile boolean saveDeleted;
+    // The mark; empty means the one of the app language.
+    public static volatile String deletedMark;
 
     static {
         SharedPreferences prefs = prefs();
@@ -42,6 +44,7 @@ public final class HorusGhost {
         sendOnline = prefs.getBoolean("sendOnline", true);
         sendTyping = prefs.getBoolean("sendTyping", true);
         saveDeleted = prefs.getBoolean("saveDeleted", true);
+        deletedMark = prefs.getString("deletedMark", "");
     }
 
     private HorusGhost() {
@@ -71,7 +74,15 @@ public final class HorusGhost {
                 .putBoolean("sendOnline", sendOnline)
                 .putBoolean("sendTyping", sendTyping)
                 .putBoolean("saveDeleted", saveDeleted)
+                .putString("deletedMark", deletedMark)
                 .apply();
+    }
+
+    public static String getDeletedMark() {
+        String mark = deletedMark;
+        return mark == null || mark.trim().isEmpty()
+                ? org.telegram.messenger.LocaleController.getString(org.telegram.messenger.R.string.HorusDeletedMark)
+                : mark.trim();
     }
 
     // True when the request must not be sent. An online status is not

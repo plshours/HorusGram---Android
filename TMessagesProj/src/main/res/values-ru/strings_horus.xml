@@ -107,4 +107,7 @@
     <string name="HorusSaveDeleted">Сохранять удалённые сообщения</string>
     <string name="HorusSaveDeletedInfo">Сообщение, которое кто-то удалил, остаётся в чате с пометкой. Оно хранится только на этом устройстве.</string>
     <string name="HorusDeletedMark">удалено</string>
+    <string name="HorusSpy">Шпион</string>
+    <string name="HorusDeletedMarkTitle">Метка удалённых</string>
+    <string name="HorusPreferences">Настройки</string>
 </resources>

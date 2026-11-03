@@ -107,4 +107,7 @@
     <string name="HorusSaveDeleted">Keep deleted messages</string>
     <string name="HorusSaveDeletedInfo">A message someone else deletes stays in the chat with a mark. It is kept on this device only.</string>
     <string name="HorusDeletedMark">deleted</string>
+    <string name="HorusSpy">Spy</string>
+    <string name="HorusDeletedMarkTitle">Deleted mark</string>
+    <string name="HorusPreferences">Preferences</string>
 </resources>

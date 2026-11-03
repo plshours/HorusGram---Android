@@ -18570,7 +18570,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
         // HorusGram: a message someone deleted that was kept.
         if (com.horusgram.HorusDeleted.isDeleted(currentAccount, currentMessageObject)) {
-            timeString = TextUtils.concat(getString(R.string.HorusDeletedMark), " ", timeString);
+            timeString = TextUtils.concat(com.horusgram.HorusGhost.getDeletedMark(), " ", timeString);
         }
         currentTimeString = new SpannableStringBuilder(timeString);
         if (signString != null) {
