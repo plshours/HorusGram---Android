@@ -62,10 +62,10 @@
     <string name="OfficialChannel">Официальный канал</string>
     <string name="About">О проекте</string>
     <string name="IgnoreBlockedAbout">ОНИ НА САМОМ ДЕЛЕ НЕ СКРЫВАЮТСЯ! Сообщения будут доступны для просмотра, но текст будет скрыт под спойлер, а автозагрузка медиа будет отключена.</string>
-    <string name="Donate">Поддержать Nekogram</string>
+    <string name="Donate">Поддержать HorusGram</string>
     <string name="DonateAbout">Поддержите разработку проекта.</string>
-    <string name="TranslationAbout">Помогите перевести Nekogram на ваш язык.</string>
-    <string name="Translation">Помочь перевести Neko</string>
+    <string name="TranslationAbout">Помогите перевести HorusGram на ваш язык.</string>
+    <string name="Translation">Помочь перевести HorusGram</string>
     <string name="GooglePlay">Google Play</string>
     <string name="ResetStickerSize">Сбросить размер стикера</string>
     <string name="OfficialChannelUsername">nekoupdates</string>

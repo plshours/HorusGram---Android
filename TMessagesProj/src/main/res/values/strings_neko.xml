@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="Nekogram" translatable="false">HorusGram</string>
-    <string name="NekogramBeta" translatable="false">Nekogram Beta</string>
+    <string name="NekogramBeta" translatable="false">HorusGram Beta</string>
     <string name="NekoSettings">HorusGram Settings</string>
     <string name="PreferIPv6">Prefer connecting through IPv6</string>
     <string name="MessageMenu">Message menu</string>
@@ -66,8 +66,8 @@
     <string name="IgnoreBlockedAbout">IT IS NOT REALLY HIDE! Messages are still available to view, but text will be converted to Spoiler and media won\'t auto download.</string>
     <string name="Donate">Donate</string>
     <string name="DonateAbout">Support our development.</string>
-    <string name="TranslationAbout">Help us to translate Nekogram to your language.</string>
-    <string name="Translation">Translate Nekogram</string>
+    <string name="TranslationAbout">Help us to translate HorusGram to your language.</string>
+    <string name="Translation">Translate HorusGram</string>
     <string name="GooglePlay">Google Play</string>
     <string name="ResetStickerSize">Reset sticker size</string>
     <string name="OfficialChannelUsername">nekoupdates</string>
@@ -83,7 +83,7 @@
     <string name="AutoPauseVideo">Auto pause video</string>
     <string name="AutoPauseVideoAbout">When lock screen/switch to background.</string>
     <string name="DisableProximityEvents">Disable proximity events</string>
-    <string name="Page1Message2">Nekogram is an **unofficial** messaging app\nthat uses Telegram\'s API.</string>
+    <string name="Page1Message2">HorusGram is an **unofficial** messaging app\nthat uses Telegram\'s API.</string>
     <string name="MapDriftingFix">Map drifting fix for Mainland China</string>
     <string name="VoiceEnhancements">Voice enhancements</string>
     <string name="VoiceEnhancementsAbout">Noise Suppression and Voice Normalization</string>
@@ -345,7 +345,7 @@
     <string name="PassQRNewPassword">Protect this QR code with a password</string>
     <string name="ConfirmNewPassword">Confirm Password</string>
     <string name="PassQRAbout">Saves your passkey as an encrypted QR code. You can scan it to log in on another device.</string>
-    <string name="PassQREncryption">Scan with Nekogram to log in.</string>
+    <string name="PassQREncryption">Scan with HorusGram to log in.</string>
     <string name="InvalidPassQr">Invalid Passkey QR</string>
 
     <!-- Accessibility -->

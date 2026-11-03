@@ -110,4 +110,10 @@
     <string name="HorusSpy">Spy</string>
     <string name="HorusDeletedMarkTitle">Deleted mark</string>
     <string name="HorusPreferences">Preferences</string>
+    <string name="HorusMusic">Music</string>
+    <string name="HorusPlayer">Player with lyrics</string>
+    <string name="HorusPlayerInfo">A small player that floats over the app and shows the lyrics of the song. Move it by its header, fold or close it. It also opens with a long press on the music bar above the chats.</string>
+    <string name="HorusPlayerNothing">Nothing is playing. Play a song in any chat.</string>
+    <string name="HorusLyricsLoading">Looking for the lyrics…</string>
+    <string name="HorusLyricsNotFound">No lyrics found for this song.</string>
 </resources>

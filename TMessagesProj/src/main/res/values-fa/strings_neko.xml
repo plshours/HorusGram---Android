@@ -140,7 +140,7 @@
     <string name="OfficialSite">سایت رسمی</string>
     <string name="MutualContact">مخاطب دو طرفه</string>
     <string name="MutualContactDescription">این مخاطب یک مخاطب دو طرفه است.</string>
-    <string name="InviteTextNeko">سلام، من از Nekogram برای چت استفاده می کنم. به من ملحق شو! Nekogram را از اینجا دانلود کن: %1$s</string>
+    <string name="InviteTextNeko">سلام، من از HorusGram برای چت استفاده می کنم. به من ملحق شو! HorusGram را از اینجا دانلود کن: %1$s</string>
     <string name="ShareNekogram">اشتراکگذاری نکوگرام...</string>
     <string name="NekogramVersion">نکوگرام %1$s\nبر اساس تلگرام %2$s\nطراحی شده %3$s</string>
     <string name="UpdateInstalling">در حال نصب بروز رسانی...</string>
@@ -270,7 +270,7 @@
     <string name="NavigationAnimationBezier">کلاسیک</string>
     <string name="NavigationAnimationSpring">عادی</string>
     <string name="CloudConfig">تنظیمات ابری</string>
-    <string name="CloudConfigDesc">تنظیمات Neko خود را در ابر تلگرام ذخیره کنید.</string>
+    <string name="CloudConfigDesc">تنظیمات HorusGram خود را در ابر تلگرام ذخیره کنید.</string>
     <string name="CloudConfigSyncDate">آخرین همگام سازی: %s، ابر: %s</string>
     <string name="CloudConfigSyncDateNever">هرگز</string>
     <string name="CloudConfigSync">همگام سازی با ابر</string>
@@ -279,7 +279,7 @@
     <string name="CloudConfigRestoreShort">بازیابی</string>
     <string name="CloudConfigSyncing">در حال همگام سازی...</string>
     <string name="CloudConfigAutoSync">همگام سازی خودکار</string>
-    <string name="CloudConfigAutoSyncDesc">پس از ایجاد تغییرات در تنظیمات Neko، به طور خودکار با ابر همگام سازی کنید.</string>
+    <string name="CloudConfigAutoSyncDesc">پس از ایجاد تغییرات در تنظیمات HorusGram، به طور خودکار با ابر همگام سازی کنید.</string>
     <string name="CloudConfigSyncFailed">تنظیمات با ابر همگام‌سازی نشد.</string>
     <string name="CloudConfigRestoreFailed">بازیابی تنظیمات از ابر انجام نشد.</string>
     <string name="ReducedColors">رنگ ها را کاهش دهید</string>

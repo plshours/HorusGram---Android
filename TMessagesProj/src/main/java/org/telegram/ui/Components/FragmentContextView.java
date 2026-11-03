@@ -745,6 +745,20 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         };
         addView(groupCallMessagesContainer, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT, Gravity.TOP, 96, 3, 96, 0));
 
+        // HorusGram: a long press on the music bar opens the floating player with lyrics.
+        setOnLongClickListener(v -> {
+            if (currentStyle != STYLE_AUDIO_PLAYER) {
+                return false;
+            }
+            MessageObject playing = MediaController.getInstance().getPlayingMessageObject();
+            if (playing == null || !playing.isMusic()) {
+                return false;
+            }
+            Activity activity = AndroidUtilities.findActivity(getContext());
+            com.horusgram.music.HorusFloatingPlayer.show(activity != null ? activity : LaunchActivity.instance);
+            return true;
+        });
+
         setOnClickListener(v -> {
             if (currentStyle == STYLE_LIVE_STORY) {
                 final LivePlayer player = LivePlayer.recording;

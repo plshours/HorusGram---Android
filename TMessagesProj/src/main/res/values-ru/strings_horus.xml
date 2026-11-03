@@ -110,4 +110,10 @@
     <string name="HorusSpy">Шпион</string>
     <string name="HorusDeletedMarkTitle">Метка удалённых</string>
     <string name="HorusPreferences">Настройки</string>
+    <string name="HorusMusic">Музыка</string>
+    <string name="HorusPlayer">Плеер с текстами</string>
+    <string name="HorusPlayerInfo">Небольшой плеер поверх приложения с текстом песни. Его можно двигать за заголовок, сворачивать и закрывать. Ещё он открывается долгим нажатием на полоску музыки над чатами.</string>
+    <string name="HorusPlayerNothing">Сейчас ничего не играет. Включите песню в любом чате.</string>
+    <string name="HorusLyricsLoading">Ищу текст песни…</string>
+    <string name="HorusLyricsNotFound">Текст для этой песни не найден.</string>
 </resources>
