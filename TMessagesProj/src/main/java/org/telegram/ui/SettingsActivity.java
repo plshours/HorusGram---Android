@@ -745,6 +745,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         }
 
         items.add(SettingCell.Factory.of(51, 0xFF8993D8, 0xFF5A6090, R.drawable.msg_theme, getString(R.string.HorusCustomization)));
+        items.add(SettingCell.Factory.of(52, 0xFF7B86CF, 0xFF505991, R.drawable.msg_secret, getString(R.string.HorusGhostMode)));
         items.add(SettingCell.Factory.of(50, 0xFFD1E4FF, 0xFF9EC5FF, R.drawable.filled_profile_settings, getString(R.string.NekoSettings)));
 
         items.add(UItem.asShadow(null));
@@ -929,6 +930,10 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             }
             case 50: {
                 presentSettingFragment(new NekoSettingsActivity());
+                break;
+            }
+            case 52: {
+                presentSettingFragment(new com.horusgram.settings.HorusGhostActivity());
                 break;
             }
             case 51: {

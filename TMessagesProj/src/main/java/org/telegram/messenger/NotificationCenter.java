@@ -165,6 +165,7 @@ public class NotificationCenter {
     public static final int businessLinkCreated = totalEvents++;
     public static final int needDeleteBusinessLink = totalEvents++;
     public static final int messageTranslated = totalEvents++;
+    public static final int horusMessagesKept = totalEvents++;
     public static final int messageTranslating = totalEvents++;
     public static final int dialogIsTranslatable = totalEvents++;
     public static final int dialogTranslate = totalEvents++;

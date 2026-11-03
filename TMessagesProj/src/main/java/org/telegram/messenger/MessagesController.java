@@ -18860,6 +18860,11 @@ public class MessagesController extends BaseController implements NotificationCe
                 dialogs_read_outbox_max.put(dialogId, Math.max(value, update.max_id));
             } else if (baseUpdate instanceof TL_update.TL_updateDeleteMessages) {
                 TL_update.TL_updateDeleteMessages update = (TL_update.TL_updateDeleteMessages) baseUpdate;
+                // HorusGram: kept with a mark instead of being removed.
+                if (com.horusgram.HorusGhost.saveDeleted) {
+                    com.horusgram.HorusDeleted.add(currentAccount, 0, update.messages);
+                    continue;
+                }
                 if (deletedMessages == null) {
                     deletedMessages = new LongSparseArray<>();
                 }
@@ -19392,6 +19397,11 @@ public class MessagesController extends BaseController implements NotificationCe
                     deletedMessages = new LongSparseArray<>();
                 }
                 long dialogId = -update.channel_id;
+                // HorusGram: kept with a mark instead of being removed.
+                if (com.horusgram.HorusGhost.saveDeleted) {
+                    com.horusgram.HorusDeleted.add(currentAccount, dialogId, update.messages);
+                    continue;
+                }
                 ArrayList<Integer> arrayList = deletedMessages.get(dialogId);
                 if (arrayList == null) {
                     arrayList = new ArrayList<>();

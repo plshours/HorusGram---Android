@@ -3173,6 +3173,7 @@ public class ChatActivity extends BaseFragment implements
             .add(NotificationCenter.dialogTranslate)
             .add(NotificationCenter.dialogIsTranslatable)
             .add(NotificationCenter.messageTranslated)
+            .add(NotificationCenter.horusMessagesKept)
             .add(NotificationCenter.messageTranslating)
             .add(NotificationCenter.onReceivedChannelDifference)
             .add(NotificationCenter.storiesUpdated)
@@ -25124,6 +25125,29 @@ public class ChatActivity extends BaseFragment implements
             updateMessageTranslation(messageObject, summary);
             if (args.length > 2 && (boolean) args[2]) {
                 checkTranslation(true);
+            }
+        } else if (id == NotificationCenter.horusMessagesKept) {
+            // HorusGram: a message deleted by someone else stays, now with a mark.
+            long bucket = (long) args[0];
+            ArrayList<Integer> ids = (ArrayList<Integer>) args[1];
+            if (chatListView == null || chatAdapter == null) {
+                return;
+            }
+            for (int i = 0; i < chatListView.getChildCount(); ++i) {
+                View child = chatListView.getChildAt(i);
+                if (!(child instanceof ChatMessageCell)) {
+                    continue;
+                }
+                ChatMessageCell cell = (ChatMessageCell) child;
+                MessageObject cellMessageObject = cell.getMessageObject();
+                if (cellMessageObject == null
+                        || com.horusgram.HorusDeleted.bucketOf(cellMessageObject.messageOwner) != bucket
+                        || !ids.contains(cellMessageObject.getId())) {
+                    continue;
+                }
+                cellMessageObject.forceUpdate = true;
+                cell.setMessageObject(cellMessageObject, cell.getCurrentMessagesGroup(), cell.isPinnedBottom(), cell.isPinnedTop(), cell.isFirstInChat(), cell.isLastInChatList());
+                chatAdapter.updateRowAtPosition(chatListView.getChildAdapterPosition(child));
             }
         } else if (id == NotificationCenter.messageTranslating) {
             MessageObject messageObject = (MessageObject) args[0];

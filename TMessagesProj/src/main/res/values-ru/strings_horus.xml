@@ -94,4 +94,17 @@
     <string name="HorusKeyAvatarCyan">Бирюзовая</string>
     <string name="HorusKeyAvatarBlue">Синяя</string>
     <string name="HorusKeyAvatarPink">Розовая</string>
+    <string name="HorusGhostMode">Режим призрака</string>
+    <string name="HorusGhostEnable">Режим призрака</string>
+    <string name="HorusGhostInfo">Другие не видят, что вы прочитали их сообщения и истории, что вы в сети и что вы печатаете.</string>
+    <string name="HorusGhostDetails">Что видят другие</string>
+    <string name="HorusGhostReadMessages">Отправлять прочтение</string>
+    <string name="HorusGhostReadStories">Отправлять просмотр историй</string>
+    <string name="HorusGhostOnline">Отправлять статус «в сети»</string>
+    <string name="HorusGhostTyping">Отправлять «печатает»</string>
+    <string name="HorusGhostDetailsInfo">Выключенное остаётся на этом устройстве. Сообщения, прочитанные в режиме призрака, остаются непрочитанными у отправителя и на других ваших устройствах.</string>
+    <string name="HorusDeletedHeader">Удалённые сообщения</string>
+    <string name="HorusSaveDeleted">Сохранять удалённые сообщения</string>
+    <string name="HorusSaveDeletedInfo">Сообщение, которое кто-то удалил, остаётся в чате с пометкой. Оно хранится только на этом устройстве.</string>
+    <string name="HorusDeletedMark">удалено</string>
 </resources>

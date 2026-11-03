@@ -94,4 +94,17 @@
     <string name="HorusKeyAvatarCyan">Cyan</string>
     <string name="HorusKeyAvatarBlue">Blue</string>
     <string name="HorusKeyAvatarPink">Pink</string>
+    <string name="HorusGhostMode">Ghost Mode</string>
+    <string name="HorusGhostEnable">Ghost mode</string>
+    <string name="HorusGhostInfo">Others do not see that you read their messages and stories, that you are online or that you are typing.</string>
+    <string name="HorusGhostDetails">What others see</string>
+    <string name="HorusGhostReadMessages">Send read receipts</string>
+    <string name="HorusGhostReadStories">Send story views</string>
+    <string name="HorusGhostOnline">Send online status</string>
+    <string name="HorusGhostTyping">Send typing status</string>
+    <string name="HorusGhostDetailsInfo">With a switch off, that part stays on this device. Messages you read in ghost mode stay unread for the sender and on your other devices.</string>
+    <string name="HorusDeletedHeader">Deleted messages</string>
+    <string name="HorusSaveDeleted">Keep deleted messages</string>
+    <string name="HorusSaveDeletedInfo">A message someone else deletes stays in the chat with a mark. It is kept on this device only.</string>
+    <string name="HorusDeletedMark">deleted</string>
 </resources>

@@ -18568,6 +18568,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         if (currentMessageObject.messageOwner.video_processing_pending) {
             timeString = formatString(R.string.ScheduledTimeApprox, timeString);
         }
+        // HorusGram: a message someone deleted that was kept.
+        if (com.horusgram.HorusDeleted.isDeleted(currentAccount, currentMessageObject)) {
+            timeString = TextUtils.concat(getString(R.string.HorusDeletedMark), " ", timeString);
+        }
         currentTimeString = new SpannableStringBuilder(timeString);
         if (signString != null) {
             if (messageObject.messageOwner.via_business_bot_id != 0) {
