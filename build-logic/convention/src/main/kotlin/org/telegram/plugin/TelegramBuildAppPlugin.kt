@@ -28,10 +28,12 @@ class TelegramBuildAppPlugin : Plugin<Project> {
                     telegramModule.fileTree("src/main/res/values") {
                         include("strings.xml")
                         include("strings_neko.xml")
+                        include("strings_horus.xml")
                     },
                     project.fileTree("src/main/res/values") {
                         include("strings.xml")
                         include("strings_neko.xml")
+                        include("strings_horus.xml")
                     }
                 )
 
@@ -39,10 +41,12 @@ class TelegramBuildAppPlugin : Plugin<Project> {
                     telegramModule.fileTree("src/main/res") {
                         include("values-*/strings.xml")
                         include("values-*/strings_neko.xml")
+                        include("values-*/strings_horus.xml")
                     },
                     project.fileTree("src/main/res") {
                         include("values-*/strings.xml")
                         include("values-*/strings_neko.xml")
+                        include("values-*/strings_horus.xml")
                     }
                 )
 
