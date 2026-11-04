@@ -4425,6 +4425,22 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
     }
 
     public void sendMessage(SendMessageParams sendMessageParams) {
+        // HorusGram: plugins see a text message before it leaves, and may change or stop it.
+        if (sendMessageParams.message != null && sendMessageParams.retryMessageObject == null
+                && sendMessageParams.caption == null && sendMessageParams.location == null
+                && sendMessageParams.photo == null && sendMessageParams.document == null
+                && sendMessageParams.game == null && sendMessageParams.poll == null
+                && sendMessageParams.todo == null && sendMessageParams.invoice == null
+                && sendMessageParams.user == null) {
+            String processed = com.horusgram.plugins.HorusPlugins.processOutgoing(sendMessageParams.peer, sendMessageParams.message);
+            if (processed == null) {
+                return;
+            }
+            if (!processed.equals(sendMessageParams.message)) {
+                sendMessageParams.message = processed;
+                sendMessageParams.entities = null;
+            }
+        }
         final SendMessageChatArguments sendMessageChatArguments = sendMessageParams.sendMessageChatArguments != null ?
                 sendMessageParams.sendMessageChatArguments : SendMessageChatArguments.EMPTY;
         String message = sendMessageParams.message;

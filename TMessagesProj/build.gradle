@@ -81,6 +81,8 @@ dependencies {
     implementation 'com.google.mlkit:language-id:17.0.6'
     implementation 'com.android.billingclient:billing:9.1.0'
     implementation 'com.google.code.gson:gson:2.15.0'
+    // HorusGram plugins run on Rhino, a JavaScript engine in plain Java.
+    implementation 'org.mozilla:rhino:1.7.15'
     implementation ('com.google.guava:guava:33.7.2-android') {
         exclude group: 'com.google.code.findbugs', module: 'jsr305'
         exclude group: 'org.checkerframework', module: 'checker-compat-qual'

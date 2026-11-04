@@ -116,4 +116,20 @@
     <string name="HorusPlayerNothing">Сейчас ничего не играет. Включите песню в любом чате.</string>
     <string name="HorusLyricsLoading">Ищу текст песни…</string>
     <string name="HorusLyricsNotFound">Текст для этой песни не найден.</string>
+    <string name="HorusPlugins">Плагины</string>
+    <string name="HorusPluginsShort">Небольшие дополнения на JavaScript, которые одинаково работают в HorusGram на телефоне и на компьютере.</string>
+    <string name="HorusPluginsInfo">Чтобы установить плагин, откройте его файл .hgplugin в любом чате. Плагину доступно только то, что даёт HorusGram: ваши сообщения, его настройки и данные. К файлам и сети доступа нет.</string>
+    <string name="HorusPluginExample">Установить пример плагина</string>
+    <string name="HorusPluginEnabled">Включён</string>
+    <string name="HorusPluginSettings">Настройки</string>
+    <string name="HorusPluginDelete">Удалить плагин</string>
+    <string name="HorusPluginDeleteAsk">Удалить %1$s вместе с его настройками и данными?</string>
+    <string name="HorusPluginAuthor">Автор: %1$s</string>
+    <string name="HorusPluginCommands">Команды:</string>
+    <string name="HorusPluginInstall">Установить плагин</string>
+    <string name="HorusPluginUpdate">Обновить плагин</string>
+    <string name="HorusPluginInstalled">%1$s установлен.</string>
+    <string name="HorusPluginFailed">Плагин не запустился: %1$s</string>
+    <string name="HorusPluginInvalid">Этот файл — не плагин HorusGram.</string>
+    <string name="HorusPluginPermissions">Плагин сможет видеть и менять отправляемые вами сообщения, видеть входящие и отправлять сообщения от вашего имени. К файлам и сети доступа у него нет.</string>
 </resources>

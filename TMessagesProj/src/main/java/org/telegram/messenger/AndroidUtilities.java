@@ -4317,6 +4317,11 @@ public class AndroidUtilities {
     }
 
     public static boolean openForView(File f, String fileName, String mimeType, final Activity activity, Theme.ResourcesProvider resourcesProvider, boolean restrict) {
+        // HorusGram: a plugin file opened from a chat is offered for installation.
+        if (f != null && f.exists() && activity != null && com.horusgram.plugins.HorusPlugins.isPluginFile(fileName != null ? fileName : f.getName())) {
+            com.horusgram.plugins.HorusPlugins.askInstall(activity, f);
+            return true;
+        }
         if (f != null && f.exists()) {
             String realMimeType = null;
             Intent intent = new Intent(Intent.ACTION_VIEW);

@@ -45,6 +45,7 @@ public class HorusSettingsActivity extends BaseNekoSettingsActivity {
     private final int deletedMarkRow = rowId++;
     private final int appearanceRow = rowId++;
     private final int playerRow = rowId++;
+    private final int pluginsRow = rowId++;
     private final int otherRow = rowId++;
     private final int sourceRow = rowId++;
 
@@ -63,6 +64,10 @@ public class HorusSettingsActivity extends BaseNekoSettingsActivity {
         items.add(UItem.asHeader(LocaleController.getString(R.string.HorusMusic)));
         items.add(UItem.asButton(playerRow, R.drawable.msg_filled_data_music, LocaleController.getString(R.string.HorusPlayer)).slug("player"));
         items.add(UItem.asShadow(LocaleController.getString(R.string.HorusPlayerInfo)));
+
+        items.add(UItem.asHeader(LocaleController.getString(R.string.HorusPlugins)));
+        items.add(UItem.asButton(pluginsRow, R.drawable.msg_bots, LocaleController.getString(R.string.HorusPlugins)).slug("plugins"));
+        items.add(UItem.asShadow(LocaleController.getString(R.string.HorusPluginsShort)));
 
         items.add(UItem.asHeader(LocaleController.getString(R.string.HorusPreferences)));
         items.add(UItem.asButton(appearanceRow, R.drawable.msg_theme, LocaleController.getString(R.string.HorusCustomization)).slug("appearance"));
@@ -87,6 +92,8 @@ public class HorusSettingsActivity extends BaseNekoSettingsActivity {
             listView.adapter.update(true);
         } else if (id == deletedMarkRow) {
             showDeletedMarkDialog();
+        } else if (id == pluginsRow) {
+            presentFragment(new com.horusgram.plugins.HorusPluginsActivity());
         } else if (id == playerRow) {
             com.horusgram.music.HorusFloatingPlayer.toggle(getParentActivity());
         } else if (id == appearanceRow) {

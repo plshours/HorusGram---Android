@@ -116,4 +116,20 @@
     <string name="HorusPlayerNothing">Nothing is playing. Play a song in any chat.</string>
     <string name="HorusLyricsLoading">Looking for the lyrics…</string>
     <string name="HorusLyricsNotFound">No lyrics found for this song.</string>
+    <string name="HorusPlugins">Plugins</string>
+    <string name="HorusPluginsShort">Small JavaScript add-ons that work the same in HorusGram for phones and computers.</string>
+    <string name="HorusPluginsInfo">To install a plugin, open its .hgplugin file in any chat. Plugins only see what HorusGram gives them: your messages, their own settings and storage. They have no access to files or the network.</string>
+    <string name="HorusPluginExample">Install the example plugin</string>
+    <string name="HorusPluginEnabled">Enabled</string>
+    <string name="HorusPluginSettings">Settings</string>
+    <string name="HorusPluginDelete">Delete plugin</string>
+    <string name="HorusPluginDeleteAsk">Delete %1$s together with its settings and data?</string>
+    <string name="HorusPluginAuthor">Author: %1$s</string>
+    <string name="HorusPluginCommands">Commands:</string>
+    <string name="HorusPluginInstall">Install plugin</string>
+    <string name="HorusPluginUpdate">Update plugin</string>
+    <string name="HorusPluginInstalled">%1$s is installed.</string>
+    <string name="HorusPluginFailed">The plugin did not start: %1$s</string>
+    <string name="HorusPluginInvalid">This file is not a HorusGram plugin.</string>
+    <string name="HorusPluginPermissions">The plugin will be able to see and change the messages you send, see the messages you receive, and send messages for you. It has no access to files or the network.</string>
 </resources>

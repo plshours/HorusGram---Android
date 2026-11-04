@@ -77,3 +77,11 @@
 
 -dontwarn android.support.annotation.*
 -dontwarn androidx.compose.**
+
+# HorusGram plugins: Rhino reaches its own classes and the plugin bridge by reflection.
+-keep class org.mozilla.javascript.** { *; }
+-dontwarn org.mozilla.javascript.**
+-dontwarn java.beans.**
+-dontwarn javax.script.**
+-dontwarn javax.lang.model.**
+-keep class com.horusgram.plugins.HorusPlugins$Bridge { public *; }

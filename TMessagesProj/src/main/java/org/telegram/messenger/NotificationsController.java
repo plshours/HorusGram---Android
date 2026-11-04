@@ -1078,6 +1078,10 @@ public class NotificationsController extends BaseController implements Notificat
     }
 
     public void processNewMessages(ArrayList<MessageObject> messageObjects, boolean isLast, boolean isFcm, CountDownLatch countDownLatch) {
+        // HorusGram: plugins see new incoming messages; the push copies come again for real.
+        if (!isFcm) {
+            com.horusgram.plugins.HorusPlugins.processIncoming(messageObjects);
+        }
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("NotificationsController: processNewMessages msgs.size()=" + (messageObjects == null ? "null" : messageObjects.size()) + " isLast=" + isLast + " isFcm=" + isFcm + ")");
         }
