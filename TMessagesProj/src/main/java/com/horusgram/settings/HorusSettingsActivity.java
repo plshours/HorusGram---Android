@@ -69,8 +69,7 @@ public class HorusSettingsActivity extends BaseNekoSettingsActivity {
         items.add(UItem.asHeader(LocaleController.getString(R.string.HorusPlugins)));
         items.add(UItem.asButton(pluginsRow, R.drawable.msg_bots, LocaleController.getString(R.string.HorusPlugins)).slug("plugins"));
         items.add(UItem.asButton(exteraPluginsRow, R.drawable.msg_addbot, LocaleController.getString(R.string.ExteraPlugins)).slug("exteraPlugins"));
-        items.add(UItem.asShadow(LocaleController.getString(R.string.HorusPluginsShort) + "
-" + LocaleController.getString(R.string.ExteraPluginsShort)));
+        items.add(UItem.asShadow(LocaleController.getString(R.string.HorusPluginsShort) + "\n" + LocaleController.getString(R.string.ExteraPluginsShort)));
 
         items.add(UItem.asHeader(LocaleController.getString(R.string.HorusPreferences)));
         items.add(UItem.asButton(appearanceRow, R.drawable.msg_theme, LocaleController.getString(R.string.HorusCustomization)).slug("appearance"));
