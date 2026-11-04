@@ -46,6 +46,7 @@ public class HorusSettingsActivity extends BaseNekoSettingsActivity {
     private final int appearanceRow = rowId++;
     private final int playerRow = rowId++;
     private final int pluginsRow = rowId++;
+    private final int exteraPluginsRow = rowId++;
     private final int otherRow = rowId++;
     private final int sourceRow = rowId++;
 
@@ -67,7 +68,9 @@ public class HorusSettingsActivity extends BaseNekoSettingsActivity {
 
         items.add(UItem.asHeader(LocaleController.getString(R.string.HorusPlugins)));
         items.add(UItem.asButton(pluginsRow, R.drawable.msg_bots, LocaleController.getString(R.string.HorusPlugins)).slug("plugins"));
-        items.add(UItem.asShadow(LocaleController.getString(R.string.HorusPluginsShort)));
+        items.add(UItem.asButton(exteraPluginsRow, R.drawable.msg_addbot, LocaleController.getString(R.string.ExteraPlugins)).slug("exteraPlugins"));
+        items.add(UItem.asShadow(LocaleController.getString(R.string.HorusPluginsShort) + "
+" + LocaleController.getString(R.string.ExteraPluginsShort)));
 
         items.add(UItem.asHeader(LocaleController.getString(R.string.HorusPreferences)));
         items.add(UItem.asButton(appearanceRow, R.drawable.msg_theme, LocaleController.getString(R.string.HorusCustomization)).slug("appearance"));
@@ -92,6 +95,8 @@ public class HorusSettingsActivity extends BaseNekoSettingsActivity {
             listView.adapter.update(true);
         } else if (id == deletedMarkRow) {
             showDeletedMarkDialog();
+        } else if (id == exteraPluginsRow) {
+            presentFragment(new com.horusgram.extera.ExteraPluginsActivity());
         } else if (id == pluginsRow) {
             presentFragment(new com.horusgram.plugins.HorusPluginsActivity());
         } else if (id == playerRow) {

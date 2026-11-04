@@ -7,6 +7,7 @@ plugins {
     id 'org.telegram.build-plugin'
     id 'tw.nekomimi.nekogram.tl-readers'
     id 'idea'
+    id 'com.chaquo.python'
 }
 
 tlReaders {
@@ -83,6 +84,9 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.15.0'
     // HorusGram plugins run on Rhino, a JavaScript engine in plain Java.
     implementation 'org.mozilla:rhino:1.7.15'
+    // Xposed-style method hooks for exteraGram plugins.
+    implementation 'top.canyie.pine:core:0.3.0'
+    implementation 'top.canyie.pine:xposed:0.2.0'
     implementation ('com.google.guava:guava:33.7.2-android') {
         exclude group: 'com.google.code.findbugs', module: 'jsr305'
         exclude group: 'org.checkerframework', module: 'checker-compat-qual'
@@ -141,9 +145,13 @@ android {
 
         // HorusGram: -PhorusAbis=arm64-v8a builds the native code for those
         // architectures only, which is what keeps a CI build within hours.
-        if (project.hasProperty('horusAbis')) {
-            ndk {
+        // Python (exteraGram plugins) has to know the architectures too, so
+        // they are always listed.
+        ndk {
+            if (project.hasProperty('horusAbis')) {
                 abiFilters.addAll(project.property('horusAbis').toString().split(','))
+            } else {
+                abiFilters.addAll(['armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'])
             }
         }
 
@@ -202,4 +210,21 @@ android {
     }
 
     namespace 'org.telegram.messenger'
+}
+
+// HorusGram: the Python that runs exteraGram plugins, with the libraries
+// exteraGram ships to them. 3.11 is the version exteraGram uses, and the last
+// one that still has 32-bit builds.
+chaquopy {
+    defaultConfig {
+        version = "3.11"
+        pip {
+            install "requests"
+            install "beautifulsoup4"
+            install "packaging"
+            install "PyYAML"
+            install "pillow"
+            install "lxml"
+        }
+    }
 }

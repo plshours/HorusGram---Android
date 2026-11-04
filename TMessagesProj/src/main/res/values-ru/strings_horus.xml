@@ -132,4 +132,11 @@
     <string name="HorusPluginFailed">Плагин не запустился: %1$s</string>
     <string name="HorusPluginInvalid">Этот файл — не плагин HorusGram.</string>
     <string name="HorusPluginPermissions">Плагин сможет видеть и менять отправляемые вами сообщения, видеть входящие и отправлять сообщения от вашего имени. К файлам и сети доступа у него нет.</string>
+    <string name="ExteraPlugins">Плагины exteraGram</string>
+    <string name="ExteraPluginsShort">Плагины на Python, сделанные для exteraGram, работают и в HorusGram.</string>
+    <string name="ExteraPluginsInfo">Чтобы установить плагин для exteraGram, откройте его файл .plugin в любом чате. Это код на Python с тем же доступом к приложению, что и в exteraGram: ставьте только плагины, которым доверяете.</string>
+    <string name="ExteraPluginPermissions">Этот плагин выполняет код на Python с полным доступом к HorusGram: вашим чатам, сообщениям, аккаунту и интернету. Устанавливайте его, только если доверяете автору.</string>
+    <string name="ExteraPluginInvalid">Этот файл — не плагин exteraGram.</string>
+    <string name="ExteraPluginNoPython">На этом устройстве не запустился Python, поэтому плагины exteraGram работать не могут.</string>
+    <string name="ExteraPluginLoading">Запускается…</string>
 </resources>

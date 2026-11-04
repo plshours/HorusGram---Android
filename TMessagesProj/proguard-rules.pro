@@ -85,3 +85,13 @@
 -dontwarn javax.script.**
 -dontwarn javax.lang.model.**
 -keep class com.horusgram.plugins.HorusPlugins$Bridge { public *; }
+
+# HorusGram: exteraGram plugins reach the client's classes by name from
+# Python, and hook them with Pine, so their names have to stay.
+-keep class org.telegram.** { *; }
+-keep class tw.nekomimi.** { *; }
+-keep class com.horusgram.** { *; }
+-keep class de.robv.android.xposed.** { *; }
+-keep class top.canyie.pine.** { *; }
+-dontwarn de.robv.android.xposed.**
+-dontwarn top.canyie.pine.**

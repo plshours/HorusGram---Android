@@ -132,4 +132,11 @@
     <string name="HorusPluginFailed">The plugin did not start: %1$s</string>
     <string name="HorusPluginInvalid">This file is not a HorusGram plugin.</string>
     <string name="HorusPluginPermissions">The plugin will be able to see and change the messages you send, see the messages you receive, and send messages for you. It has no access to files or the network.</string>
+    <string name="ExteraPlugins">exteraGram plugins</string>
+    <string name="ExteraPluginsShort">Python plugins made for exteraGram run in HorusGram as well.</string>
+    <string name="ExteraPluginsInfo">To install a plugin made for exteraGram, open its .plugin file in any chat. These plugins are Python code with the same access to the app as in exteraGram: install only plugins you trust.</string>
+    <string name="ExteraPluginPermissions">This plugin runs Python code with full access to HorusGram: your chats, messages, account and the internet. Install it only if you trust its author.</string>
+    <string name="ExteraPluginInvalid">This file is not an exteraGram plugin.</string>
+    <string name="ExteraPluginNoPython">Python could not start on this device, so exteraGram plugins cannot run.</string>
+    <string name="ExteraPluginLoading">Starting…</string>
 </resources>

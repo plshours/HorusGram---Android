@@ -78,3 +78,38 @@ explanation).
 A plugin sees only `HG` and the standard JavaScript objects. It has no access
 to files, the network, other plugins, or the inner workings of the client, so
 installing one cannot do more than the dialog says.
+
+## exteraGram plugins
+
+HorusGram for Android also runs plugins made for exteraGram: `.plugin` files
+in Python, written against the SDK documented at
+https://plugins.exteragram.app/docs. Open such a file in any chat to install
+it; the list is under HorusGram → exteraGram plugins.
+
+Python 3.11 comes with the app (Chaquopy), with requests, beautifulsoup4,
+lxml, pillow, PyYAML and packaging. `__requirements__` are installed from
+PyPI when they are pure-Python wheels.
+
+HorusGram has its own versions of the SDK modules (`base_plugin`,
+`client_utils`, `android_utils`, `hook_utils`, `file_utils`, `log_utils`,
+`ui.settings`, `ui.bulletin`, `ui.alert`, `extera_utils.text_formatting`) in
+`TMessagesProj/src/main/python`. What works:
+
+- metadata, `on_plugin_load` / `on_plugin_unload`, `on_app_event` (START);
+- `add_on_send_message_hook` / `on_send_message_hook`;
+- `add_hook` with `pre_request_hook`, `post_request_hook`, `on_update_hook`,
+  `on_updates_hook`, and every `HookStrategy`;
+- Xposed-style `hook_method`, `hook_all_methods`, `hook_all_constructors`
+  with `MethodHook`, `MethodReplacement` and `HookFilter` (through Pine);
+- settings pages with Header, Divider, Switch, Selector, Input, Text,
+  EditText, sub-pages and Custom rows (UItem, View, SimpleSettingFactory);
+- `get_setting` / `set_setting` / `export_settings` / `import_settings`;
+- the `client_utils` helpers (queues, requests, send_* and edit_message,
+  controllers, NotificationCenterDelegate, `get_client`);
+- bulletins, alert dialogs, reflection helpers and the logger.
+
+Not yet: menu items (`add_menu_item` is accepted but shows nothing), MVEL
+text conditions in `HookFilter.Condition`, the class proxy, intents, and
+plugin repositories. These plugins are not sandboxed: like in exteraGram they
+have full access to the app, so only install plugins you trust. They do not
+run in HorusGram Desktop, because they call Android code directly.

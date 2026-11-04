@@ -4425,6 +4425,10 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
     }
 
     public void sendMessage(SendMessageParams sendMessageParams) {
+        // HorusGram: exteraGram plugins (on_send_message_hook) come first.
+        if (com.horusgram.extera.ExteraPlugins.onSendMessage(currentAccount, sendMessageParams)) {
+            return;
+        }
         // HorusGram: plugins see a text message before it leaves, and may change or stop it.
         if (sendMessageParams.message != null && sendMessageParams.retryMessageObject == null
                 && sendMessageParams.caption == null && sendMessageParams.location == null

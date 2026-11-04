@@ -399,6 +399,15 @@ public class ConnectionsManager extends BaseController {
         if (com.horusgram.HorusGhost.filter(object)) {
             return;
         }
+        // HorusGram: exteraGram plugins (pre_request_hook / post_request_hook).
+        TLObject hooked = com.horusgram.extera.ExteraPlugins.preRequest(currentAccount, object);
+        if (hooked == null) {
+            return;
+        }
+        sendRequestChecked(hooked, com.horusgram.extera.ExteraPlugins.wrapRequest(currentAccount, hooked, onComplete), onCompleteTimestamp, onQuickAck, onWriteToSocket, flags, datacenterId, connectionType, immediate, requestToken);
+    }
+
+    private void sendRequestChecked(TLObject object, RequestDelegate onComplete, RequestDelegateTimestamp onCompleteTimestamp, QuickAckDelegate onQuickAck, WriteToSocketDelegate onWriteToSocket, int flags, int datacenterId, int connectionType, boolean immediate, int requestToken) {
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("send request " + object + " with token = " + requestToken);
         }

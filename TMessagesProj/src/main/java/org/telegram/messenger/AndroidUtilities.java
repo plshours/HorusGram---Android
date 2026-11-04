@@ -4322,6 +4322,11 @@ public class AndroidUtilities {
             com.horusgram.plugins.HorusPlugins.askInstall(activity, f);
             return true;
         }
+        // HorusGram: and so is a plugin made for exteraGram.
+        if (f != null && f.exists() && activity != null && com.horusgram.extera.ExteraPlugins.isPluginFile(fileName != null ? fileName : f.getName())) {
+            com.horusgram.extera.ExteraPlugins.askInstall(activity, f);
+            return true;
+        }
         if (f != null && f.exists()) {
             String realMimeType = null;
             Intent intent = new Intent(Intent.ACTION_VIEW);

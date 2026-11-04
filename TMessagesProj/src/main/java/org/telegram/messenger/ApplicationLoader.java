@@ -283,6 +283,8 @@ public class ApplicationLoader extends Application {
             DownloadController.getInstance(a);
         }
         BillingController.getInstance().startConnection();
+        // HorusGram: exteraGram plugins that are turned on start in the background.
+        com.horusgram.extera.ExteraPlugins.start();
     }
 
     public ApplicationLoader() {

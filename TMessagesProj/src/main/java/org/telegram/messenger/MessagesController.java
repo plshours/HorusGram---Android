@@ -17881,6 +17881,10 @@ public class MessagesController extends BaseController implements NotificationCe
 
     // must be run from Utilities.stageQueue
     public void processUpdates(final TLRPC.Updates updates, boolean fromQueue) {
+        // HorusGram: exteraGram plugins (on_updates_hook) may drop a container.
+        if (com.horusgram.extera.ExteraPlugins.onUpdates(currentAccount, updates)) {
+            return;
+        }
         if (updates instanceof TLRPC.TL_updates || updates instanceof TLRPC.TL_updatesCombined) {
             boolean hasMessageIdUpdates = false;
             for (int i = 0; i < updates.updates.size(); i++) {
@@ -18438,6 +18442,8 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public boolean processUpdateArray(ArrayList<TLRPC.Update> updates, ArrayList<TLRPC.User> usersArr, ArrayList<TLRPC.Chat> chatsArr, boolean fromGetDifference, int date) {
+        // HorusGram: exteraGram plugins (on_update_hook) see each update.
+        com.horusgram.extera.ExteraPlugins.onUpdateArray(currentAccount, updates);
         if (updates.isEmpty()) {
             if (usersArr != null || chatsArr != null) {
                 AndroidUtilities.runOnUIThread(() -> {
