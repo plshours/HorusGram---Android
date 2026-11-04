@@ -24,9 +24,9 @@
         <item name="android:textViewStyle">@style/MyTextViewStyle</item>
         <item name="android:forceDarkAllowed">false</item>
         <item name="android:windowSplashScreenIconBackgroundColor">@color/ic_launcher_background</item>
-        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_launcher_animated</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_splash_horus</item>
         <item name="android:windowSplashScreenAnimationDuration">@integer/splash_screen_duration</item>
-        <item name="android:windowSplashScreenBackground">?android:windowBackground</item>
+        <item name="android:windowSplashScreenBackground">@color/ic_launcher_background</item>
     </style>
 
     <style name="Theme.TMessages" parent="Theme.AppCompat.Light">
@@ -54,9 +54,9 @@
         <item name="android:textViewStyle">@style/MyTextViewStyle</item>
         <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
         <item name="android:forceDarkAllowed">false</item>
-        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_launcher_animated</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_splash_horus</item>
         <item name="android:windowSplashScreenAnimationDuration">@integer/splash_screen_duration</item>
-        <item name="android:windowSplashScreenBackground">?android:windowBackground</item>
+        <item name="android:windowSplashScreenBackground">@color/ic_launcher_background</item>
     </style>
 
     <style name="Theme.TMessages.Dark" parent="Theme.AppCompat.DayNight">
@@ -94,9 +94,9 @@
         <item name="android:colorPrimaryDark">#99000000</item>
         <item name="android:navigationBarColor">#000000</item>
         <item name="android:forceDarkAllowed">false</item>
-        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_launcher_animated</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_splash_horus</item>
         <item name="android:windowSplashScreenAnimationDuration">@integer/splash_screen_duration</item>
-        <item name="android:windowSplashScreenBackground">?android:windowBackground</item>
+        <item name="android:windowSplashScreenBackground">@color/ic_launcher_background</item>
     </style>
 
     <style name="Theme.TMessages.Dialog.Alert" parent="android:style/Theme.Material.Light.Dialog.Alert">
