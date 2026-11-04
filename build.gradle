@@ -30,7 +30,8 @@ subprojects {
                 }
 
                 defaultConfig {
-                    minSdkVersion 23
+                    // HorusGram: 24, the oldest Android the Python of plugins runs on.
+                    minSdkVersion 24
                     targetSdkVersion 36
                 }
 
