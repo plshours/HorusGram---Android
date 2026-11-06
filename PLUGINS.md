@@ -7,8 +7,14 @@ give it the same `HG` object, described here, and nothing else.
 To install a plugin, send the `.hgplugin` file to any chat (Saved Messages
 works) and open it in HorusGram. The client shows what the plugin is and what it
 will be allowed to do, and installs it on confirmation. Installed plugins are
-listed under Settings → HorusGram → Plugins, where they can be turned off,
-set up and deleted.
+listed under Settings → HorusGram → Plugins on Android and under HorusGram
+Preferences → Plugins on the PC, where they can be turned off, set up and
+deleted. On the PC that list can also install a plugin from a file.
+
+Android runs plugins on Rhino, the PC on QuickJS. Both run the same
+`horus_plugin_prelude.js` (in `TMessagesProj/src/main/assets` here and in
+`Telegram/Resources/hoursgram` of HorusGram Desktop) before the plugin, so the
+two must be changed together.
 
 ## The file
 
