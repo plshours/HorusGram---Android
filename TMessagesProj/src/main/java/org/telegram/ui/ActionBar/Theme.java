@@ -4183,6 +4183,17 @@ public class Theme {
         try {
             final ThemeInfo themeDarkBlue = themesDict.get("Dark Blue");
 
+            // HorusGram: Graphite is the look of HorusGram now, so a client
+            // that already has a theme saved is moved to it once. Picking
+            // another theme afterwards sticks.
+            if (!preferences.getBoolean("horusGraphiteApplied", false)) {
+                preferences.edit()
+                        .putBoolean("horusGraphiteApplied", true)
+                        .putString("theme", HorusPalette.GRAPHITE_NAME)
+                        .putString("nighttheme", HorusPalette.GRAPHITE_NAME)
+                        .apply();
+            }
+
             String theme = preferences.getString("theme", HorusPalette.GRAPHITE_NAME);
             if ("Default".equals(theme)) {
                 applyingTheme = themesDict.get("Blue");
