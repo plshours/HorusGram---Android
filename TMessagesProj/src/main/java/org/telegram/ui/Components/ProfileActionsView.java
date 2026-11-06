@@ -111,6 +111,9 @@ public class ProfileActionsView extends View {
     public static final int KEY_EDIT_USERNAME = 15;
     public static final int KEY_EDIT_INFO = 16;
     public static final int KEY_SETTINGS = 17;
+    // HorusGram Graphite: send Gram, and the menu of the profile.
+    public static final int KEY_GRAM = 201;
+    public static final int KEY_MORE = 202;
 
     private boolean isApplying;
     private boolean isNotificationsEnabled;
@@ -746,6 +749,15 @@ public class ProfileActionsView extends View {
 
         switch (mode) {
             case MODE_USER:
+                if (com.horusgram.HorusPalette.isGraphite()) {
+                    // HORUSGRAM_DESIGN.md: message, call, Gram, mute, more.
+                    insertIfAvailable(out, KEY_MESSAGE);
+                    insertIfAvailable(out, KEY_CALL);
+                    insertIfAvailable(out, KEY_GRAM);
+                    insertIfAvailable(out, KEY_NOTIFICATION);
+                    out.add(getOrCreate(KEY_MORE));
+                    break;
+                }
                 insertIfAvailable(out, KEY_MESSAGE);
                 insertIfAvailable(out, KEY_NOTIFICATION);
                 insertIfAvailable(out, KEY_CALL);
@@ -930,6 +942,12 @@ public class ProfileActionsView extends View {
             case KEY_NOTIFICATION:
                 newAction = new Action();
                 updateNotification(newAction, false);
+                break;
+            case KEY_GRAM:
+                newAction = new Action(ActionButton.GRAM);
+                break;
+            case KEY_MORE:
+                newAction = new Action(ActionButton.MORE);
                 break;
         }
 
@@ -1270,7 +1288,9 @@ public class ProfileActionsView extends View {
         SET_PHOTO(R.string.ProfileActionsEditPhoto2, R.drawable.filled_profile_photo, R.drawable.outline_profile_photo),
         EDIT_USERNAME(R.string.ProfileActionsEditUsername, R.drawable.filled_profile_edit_24, R.drawable.outline_profile_edit_24),
         EDIT_INFO(R.string.ProfileActionsEditInfo, R.drawable.filled_profile_edit_24, R.drawable.outline_profile_edit_24),
-        SETTINGS(R.string.Settings, R.drawable.filled_profile_settings, R.drawable.outline_profile_settings),;
+        SETTINGS(R.string.Settings, R.drawable.filled_profile_settings, R.drawable.outline_profile_settings),
+        GRAM(R.string.HorusProfileGram, R.drawable.horus_ic_money, R.drawable.horus_ic_money),
+        MORE(R.string.HorusProfileMore, R.drawable.horus_ic_more, R.drawable.horus_ic_more),;
 
         final @StringRes int title;
         final @DrawableRes int filledIcon;

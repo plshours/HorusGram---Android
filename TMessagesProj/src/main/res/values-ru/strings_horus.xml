@@ -145,4 +145,6 @@
     <string name="HorusGroupApp">Приложение</string>
     <string name="HorusSettingsAppearance">Внешний вид</string>
     <string name="HorusSettingsMore">Прочее</string>
+    <string name="HorusProfileGram">Gram</string>
+    <string name="HorusProfileMore">Ещё</string>
 </resources>

@@ -145,4 +145,6 @@
     <string name="HorusGroupApp">App</string>
     <string name="HorusSettingsAppearance">Appearance</string>
     <string name="HorusSettingsMore">More</string>
+    <string name="HorusProfileGram">Gram</string>
+    <string name="HorusProfileMore">More</string>
 </resources>
