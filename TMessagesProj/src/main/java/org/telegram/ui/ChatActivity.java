@@ -17403,7 +17403,7 @@ public class ChatActivity extends BaseFragment implements
         if (dummyMessageCell == null) {
             dummyMessageCell = new ChatMessageCell(getParentActivity(), currentAccount, true, sharedResources, themeDelegate);
         }
-        dummyMessageCell.isChat = currentChat != null || UserObject.isUserSelf(currentUser);
+        dummyMessageCell.isChat = ChatMessageCell.graphiteRows() || currentChat != null || UserObject.isUserSelf(currentUser);
         dummyMessageCell.isSavedChat = chatMode == MODE_SAVED;
         dummyMessageCell.isSavedPreviewChat = chatMode == MODE_SAVED && isInsideContainer;
         dummyMessageCell.isBot = currentUser != null && currentUser.bot;
@@ -38717,7 +38717,8 @@ public class ChatActivity extends BaseFragment implements
                 if (view instanceof ChatMessageCell) {
                     final ChatMessageCell messageCell = (ChatMessageCell) view;
                     MessageObject.GroupedMessages groupedMessages = getValidGroupedMessage(message);
-                    messageCell.isChat = currentChat != null || UserObject.isUserSelf(currentUser) || UserObject.isReplyUser(currentUser) || (chatMode == MODE_SEARCH);
+                    // Graphite draws every chat with avatars and names.
+                    messageCell.isChat = ChatMessageCell.graphiteRows() || currentChat != null || UserObject.isUserSelf(currentUser) || UserObject.isReplyUser(currentUser) || (chatMode == MODE_SEARCH);
                     messageCell.setSponsoredMessageVisible(true, false);
                     messageCell.isBotForum = UserObject.isBotForum(currentUser);
                     messageCell.isReportChat = isReport();
