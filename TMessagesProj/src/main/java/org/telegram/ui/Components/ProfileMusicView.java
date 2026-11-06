@@ -120,6 +120,11 @@ public class ProfileMusicView extends View {
     private final Matrix matrix = new Matrix();
 
     public void setColor(MessagesController.PeerColor peerColor) {
+        // HORUSGRAM_DESIGN.md: with Graphite the music and the Money card of
+        // a profile are graphite like its tiles, not in the profile color.
+        if (com.horusgram.HorusPalette.isGraphite()) {
+            peerColor = null;
+        }
         hasProfileColor = peerColor != null;
         if (trailingView != null) trailingView.setColor(peerColor);
         invalidate();

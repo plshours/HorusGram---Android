@@ -31,12 +31,6 @@ ON_ACCENT = ['chats_actionIcon', 'chats_unreadCounterText', 'chats_verifiedCheck
  'dialogFloatingIcon', 'chat_inMediaIcon', 'chat_inMediaIconSelected', 'chat_outMediaIcon',
  'chat_outMediaIconSelected', 'windowBackgroundCheckText', 'switchTrackBlueThumbChecked',
  'featuredStickers_buttonProgress']
-# HORUSGRAM_DESIGN.md: messages are lines, not bubbles, so the bubbles of
-# Graphite are see-through and only a faint wash marks a selected message.
-# Nearly see-through rather than 0, which some code reads as "not set".
-EXACT = {'chat_inBubble': 0x01000000, 'chat_outBubble': 0x01000000,
- 'chat_inBubbleShadow': 0x01000000, 'chat_outBubbleShadow': 0x01000000,
- 'chat_inBubbleSelected': 0x1AFFFFFF, 'chat_outBubbleSelected': 0x1AFFFFFF}
 GRAY = {'avatar_backgroundSaved': 0x5A5A5A, 'avatar_background2Saved': 0x4A4A4A,
  'avatar_backgroundInProfileBlue': 0x3A3A3A}
 lines, seen = [], set()
@@ -52,10 +46,6 @@ for line in open(src, encoding='utf-8').read().replace('\r\n', '\n').split('\n')
     if key == 'wallpaperFileOffset':
         lines.append(line); continue
     a, rgb = c & 0xFF000000, c & 0xFFFFFF
-    if key in EXACT:
-        v = EXACT[key]
-        lines.append(f'{key}={v - (1 << 32) if v >= 1 << 31 else v}')
-        continue
     if key in ON_ACCENT:
         rgb = DARK
     elif key in GRAY:
