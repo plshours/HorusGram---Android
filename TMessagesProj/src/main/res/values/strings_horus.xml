@@ -140,4 +140,9 @@
     <string name="ExteraPluginInvalid">This file is not an exteraGram plugin.</string>
     <string name="ExteraPluginNoPython">Python could not start on this device, so exteraGram plugins cannot run.</string>
     <string name="ExteraPluginLoading">Starting…</string>
+    <!-- HORUSGRAM_DESIGN.md: the groups of the Graphite settings. -->
+    <string name="HorusGroupAccount">Account</string>
+    <string name="HorusGroupApp">App</string>
+    <string name="HorusSettingsAppearance">Appearance</string>
+    <string name="HorusSettingsMore">More</string>
 </resources>

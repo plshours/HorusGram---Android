@@ -45,6 +45,7 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.CookieManager;
 import android.webkit.WebStorage;
 import android.webkit.WebView;
@@ -58,6 +59,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.collection.LongSparseArray;
+import androidx.core.graphics.ColorUtils;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -720,6 +722,9 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             items.add(UItem.asShadow(null));
         }
 
+        if (com.horusgram.HorusPalette.isGraphite()) {
+            fillGraphiteSections(items);
+        } else {
         final boolean walletAbove = getConnectionsManager().getCurrentTime() - 1791538462 < 4 * 7 * 24 * 60 * 60;
         if (walletAbove && getMessagesController().config.walletAvailable.get()) {
             final GramWallet wallet = GramWallet.getInstance(currentAccount);
@@ -746,6 +751,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
 
         // HorusGram: one entry for everything of HorusGram, as AyuGram has.
         items.add(SettingCell.Factory.of(51, 0xFF8993D8, 0xFF5A6090, R.drawable.filled_profile_settings, "HorusGram"));
+        }
 
         items.add(UItem.asShadow(null));
 
@@ -795,6 +801,36 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         }
 
         items.add(UItem.asCustomShadow(versionView));
+    }
+
+    // HORUSGRAM_DESIGN.md: with Graphite the sections are two groups, Account
+    // and App, the sections of HorusGram among those of Telegram, each with
+    // an icon of the HorusGram set and its value on the right.
+    private void fillGraphiteSections(ArrayList<UItem> items) {
+        items.add(UItem.asHeader(getString(R.string.HorusGroupAccount)));
+        items.add(SettingCell.Factory.of(1, 1, 0, R.drawable.horus_ic_account, getString(R.string.SettingsAccount)));
+        items.add(SettingCell.Factory.of(3, 1, 0, R.drawable.horus_ic_privacy, getString(R.string.SettingsPrivacySecurity)));
+        items.add(SettingCell.Factory.of(5, 1, 0, R.drawable.horus_ic_notifications, getString(R.string.SettingsNotifications)));
+        if (getMessagesController().config.walletAvailable.get()) {
+            final GramWallet wallet = GramWallet.getInstance(currentAccount);
+            items.add(SettingCell.Factory.of(25, 1, 0, R.drawable.horus_ic_money, getString(R.string.WalletAttachMoney), null, wallet.getBalance() > 0 ? GramWallet.formatGrams(wallet.getBalance()) : null));
+        }
+        items.add(SettingCell.Factory.of(52, 1, 0, R.drawable.horus_ic_ghost, getString(R.string.HorusGhostMode)));
+        items.add(UItem.asShadow(null));
+
+        items.add(UItem.asHeader(getString(R.string.HorusGroupApp)));
+        items.add(SettingCell.Factory.of(2, 1, 0, R.drawable.horus_ic_chats, getString(R.string.SettingsChat)));
+        items.add(SettingCell.Factory.of(7, 1, 0, R.drawable.horus_ic_folders, getString(R.string.SettingsFolders)));
+        items.add(SettingCell.Factory.of(53, 1, 0, R.drawable.horus_ic_appearance, getString(R.string.HorusSettingsAppearance)));
+        items.add(SettingCell.Factory.of(6, 1, 0, R.drawable.horus_ic_advanced, getString(R.string.SettingsData)));
+        items.add(SettingCell.Factory.of(8, 1, 0, R.drawable.horus_ic_devices, getString(R.string.SettingsDevices)));
+        items.add(SettingCell.Factory.of(9, 1, 0, R.drawable.horus_ic_battery, getString(R.string.SettingsPowerSaving)));
+        items.add(SettingCell.Factory.of(10, 1, 0, R.drawable.horus_ic_language, getString(R.string.SettingsLanguage), null, LocaleController.getCurrentLanguageName()));
+        final int plugins = com.horusgram.plugins.HorusPlugins.list().size();
+        items.add(SettingCell.Factory.of(54, 1, 0, R.drawable.horus_ic_plugins, getString(R.string.HorusPlugins), null, plugins > 0 ? String.valueOf(plugins) : null));
+        items.add(SettingCell.Factory.of(55, 1, 0, R.drawable.horus_ic_plugins, getString(R.string.ExteraPlugins)));
+        items.add(SettingCell.Factory.of(56, 1, 0, R.drawable.horus_ic_music, getString(R.string.HorusMusic)));
+        items.add(SettingCell.Factory.of(51, 1, 0, R.drawable.horus_ic_more, getString(R.string.HorusSettingsMore)));
     }
 
     private void presentSettingFragment(BaseFragment fragment) {
@@ -933,6 +969,22 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             }
             case 52: {
                 presentSettingFragment(new com.horusgram.settings.HorusGhostActivity());
+                break;
+            }
+            case 53: {
+                presentSettingFragment(new com.horusgram.settings.HorusCustomizationActivity());
+                break;
+            }
+            case 54: {
+                presentSettingFragment(new com.horusgram.plugins.HorusPluginsActivity());
+                break;
+            }
+            case 55: {
+                presentSettingFragment(new com.horusgram.extera.ExteraPluginsActivity());
+                break;
+            }
+            case 56: {
+                com.horusgram.music.HorusFloatingPlayer.toggle(getParentActivity());
                 break;
             }
             case 51: {
@@ -1232,8 +1284,36 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         public void updateColors() {
             titleView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
             subtitleView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, resourcesProvider));
+            if (com.horusgram.HorusPalette.isGraphite()) {
+                // HORUSGRAM_DESIGN.md: one color for every icon, on a round
+                // graphite plate a step lighter than the list, values in gray.
+                final int list = Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider);
+                final int text = Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider);
+                valueView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, resourcesProvider));
+                iconBackground.setGraphite(true, true, ColorUtils.blendARGB(list, text, 0.1f));
+                iconBackground.setDrawBorder(false);
+                iconView.setColorFilter(new PorterDuffColorFilter(text, PorterDuff.Mode.SRC_IN));
+                setIconSizes(32, 20);
+                return;
+            }
+            iconBackground.setGraphite(false, false, 0);
+            iconView.clearColorFilter();
+            setIconSizes(28, 24);
             valueView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText, resourcesProvider));
             iconBackground.setDrawBorder(hasBackground && (resourcesProvider != null ? resourcesProvider.isDark() : Theme.isCurrentThemeDark()));
+        }
+
+        private void setIconSizes(int plate, int icon) {
+            final ViewGroup.LayoutParams plateParams = iconLayout.getLayoutParams();
+            if (plateParams != null && plateParams.width != dp(plate)) {
+                plateParams.width = plateParams.height = dp(plate);
+                iconLayout.setLayoutParams(plateParams);
+            }
+            final ViewGroup.LayoutParams iconParams = iconView.getLayoutParams();
+            if (iconParams != null && iconParams.width != dp(icon)) {
+                iconParams.width = iconParams.height = dp(icon);
+                iconView.setLayoutParams(iconParams);
+            }
         }
 
         private boolean twoLines;
@@ -1293,8 +1373,25 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                 this.border = drawBorder;
             }
 
+            // HorusGram Graphite: a flat round plate instead of the gradient.
+            private boolean graphite, graphiteShown;
+            private final Paint graphitePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            public void setGraphite(boolean on, boolean shown, int color) {
+                graphite = on;
+                graphiteShown = shown;
+                graphitePaint.setColor(color);
+                invalidateSelf();
+            }
+
             @Override
             public void draw(@NonNull Canvas canvas) {
+                if (graphite) {
+                    if (graphiteShown) {
+                        AndroidUtilities.rectTmp.set(getBounds());
+                        canvas.drawCircle(AndroidUtilities.rectTmp.centerX(), AndroidUtilities.rectTmp.centerY(), Math.min(AndroidUtilities.rectTmp.width(), AndroidUtilities.rectTmp.height()) / 2f, graphitePaint);
+                    }
+                    return;
+                }
                 final float r = dp(10);
                 AndroidUtilities.rectTmp.set(getBounds());
                 matrix.reset();

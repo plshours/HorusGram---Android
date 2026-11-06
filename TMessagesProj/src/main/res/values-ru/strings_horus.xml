@@ -140,4 +140,9 @@
     <string name="ExteraPluginInvalid">Этот файл — не плагин exteraGram.</string>
     <string name="ExteraPluginNoPython">На этом устройстве не запустился Python, поэтому плагины exteraGram работать не могут.</string>
     <string name="ExteraPluginLoading">Запускается…</string>
+    <!-- HORUSGRAM_DESIGN.md: the groups of the Graphite settings. -->
+    <string name="HorusGroupAccount">Аккаунт</string>
+    <string name="HorusGroupApp">Приложение</string>
+    <string name="HorusSettingsAppearance">Внешний вид</string>
+    <string name="HorusSettingsMore">Прочее</string>
 </resources>
