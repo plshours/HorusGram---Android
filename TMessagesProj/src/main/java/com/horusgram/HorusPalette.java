@@ -37,6 +37,11 @@ public final class HorusPalette {
     public static final String MAC_DARK_ASSET = "horusgram_mac_dark.attheme";
     public static final String MAC_LIGHT_NAME = "HorusGram macOS Light";
     public static final String MAC_LIGHT_ASSET = "horusgram_mac_light.attheme";
+    // Graphite, the monochrome look shared with HorusGram Desktop. Its file is
+    // made from horusgram.attheme, so the five base colors are not offered
+    // for it.
+    public static final String GRAPHITE_NAME = "HorusGram Graphite";
+    public static final String GRAPHITE_ASSET = "horusgram_graphite.attheme";
 
     private static final String PREFS = "horusgram_palette";
     private static final String SLOT_PREFIX = "slot/";

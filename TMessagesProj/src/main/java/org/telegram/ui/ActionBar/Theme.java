@@ -1658,7 +1658,7 @@ public class Theme {
             if (isDark != UNKNOWN) {
                 return isDark == DARK;
             }
-            if ("Dark Blue".equals(name) || "Night".equals(name) || "AMOLED".equals(name) || "Monet Dark".equals(name) || "Monet AMOLED".equals(name) || HorusPalette.THEME_NAME.equals(name) || HorusPalette.MAC_DARK_NAME.equals(name)) {
+            if ("Dark Blue".equals(name) || "Night".equals(name) || "AMOLED".equals(name) || "Monet Dark".equals(name) || "Monet AMOLED".equals(name) || HorusPalette.THEME_NAME.equals(name) || HorusPalette.MAC_DARK_NAME.equals(name) || HorusPalette.GRAPHITE_NAME.equals(name)) {
                 isDark = DARK;
             } else if ("Blue".equals(name) || "Arctic Blue".equals(name) || "Day".equals(name) || "Monet Light".equals(name) || HorusPalette.MAC_LIGHT_NAME.equals(name)) {
                 isDark = LIGHT;
@@ -4069,6 +4069,17 @@ public class Theme {
         themes.add(themeInfo);
         themesDict.put(HorusPalette.THEME_NAME, themeInfo);
 
+        // HorusGram: Graphite, the default look of HorusGram on both platforms.
+        themeInfo = new ThemeInfo();
+        themeInfo.name = HorusPalette.GRAPHITE_NAME;
+        themeInfo.assetName = HorusPalette.GRAPHITE_ASSET;
+        themeInfo.previewBackgroundColor = 0xff181818;
+        themeInfo.previewInColor = 0xff121212;
+        themeInfo.previewOutColor = 0xff2e2e2e;
+        themeInfo.sortIndex = 0;
+        themes.add(themeInfo);
+        themesDict.put(HorusPalette.GRAPHITE_NAME, themeInfo);
+
         // HorusGram: the two looks of Telegram for macOS that HorusGram Desktop has as well.
         themeInfo = new ThemeInfo();
         themeInfo.name = HorusPalette.MAC_DARK_NAME;
@@ -4172,7 +4183,7 @@ public class Theme {
         try {
             final ThemeInfo themeDarkBlue = themesDict.get("Dark Blue");
 
-            String theme = preferences.getString("theme", HorusPalette.THEME_NAME);
+            String theme = preferences.getString("theme", HorusPalette.GRAPHITE_NAME);
             if ("Default".equals(theme)) {
                 applyingTheme = themesDict.get("Blue");
                 applyingTheme.currentAccentId = DEFALT_THEME_ACCENT_ID;
@@ -4188,7 +4199,7 @@ public class Theme {
                 }
             }
 
-            theme = preferences.getString("nighttheme", HorusPalette.THEME_NAME);
+            theme = preferences.getString("nighttheme", HorusPalette.GRAPHITE_NAME);
             if ("Default".equals(theme)) {
                 applyingTheme = themesDict.get("Blue");
                 applyingTheme.currentAccentId = DEFALT_THEME_ACCENT_ID;

@@ -6,6 +6,7 @@
     <string name="HorusThemeMain">HorusGram</string>
     <string name="HorusThemeMacDark">macOS Dark</string>
     <string name="HorusThemeMacLight">macOS Light</string>
+    <string name="HorusThemeGraphite">Graphite</string>
     <string name="HorusApplyTheme">Use the HorusGram theme</string>
     <string name="HorusApplyThemeInfo">The colors below are those of the HorusGram theme. They show in the app while that theme is on.</string>
     <string name="HorusBaseColors">Base colors</string>

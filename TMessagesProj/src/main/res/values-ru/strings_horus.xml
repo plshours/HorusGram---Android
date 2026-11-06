@@ -6,6 +6,7 @@
     <string name="HorusThemeMain">HorusGram</string>
     <string name="HorusThemeMacDark">macOS тёмная</string>
     <string name="HorusThemeMacLight">macOS светлая</string>
+    <string name="HorusThemeGraphite">Графит</string>
     <string name="HorusApplyTheme">Включить тему HorusGram</string>
     <string name="HorusApplyThemeInfo">Цвета ниже относятся к теме HorusGram и видны, пока она включена.</string>
     <string name="HorusBaseColors">Основные цвета</string>
