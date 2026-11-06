@@ -13827,14 +13827,6 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         int currentSize = getMeasuredHeight() + (getMeasuredWidth() << 16);
         if (lastSize != currentSize || !wasLayout || forcedLayout) {
             layoutWidth = getMeasuredWidth();
-            if (graphiteRows() && currentMessageObject.isOutOwner() && needDrawAvatar() && currentMessagesGroup == null && !isWidthAdaptive()) {
-                // Everything of an outgoing message is placed from the right
-                // edge of the layout; ending the layout where the message
-                // ends puts it at the left, after the avatar, as incoming
-                // messages are. Albums keep their place for now: their parts
-                // are laid out against each other.
-                layoutWidth = Math.min(layoutWidth, backgroundWidth + dp(48) + dp(mediaBackground ? 18 : 3));
-            }
             layoutHeight = getMeasuredHeight() - substractBackgroundHeight - getPaddingTop() - getPaddingBottom() - additionalPaddingHeight;
             if (timeTextWidth < 0) {
                 timeTextWidth = dp(10);
@@ -19852,7 +19844,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
 
         return (
             isPinnedChat && currentMessageObject.type == MessageObject.TYPE_TEXT ||
-            !pinnedTop && drawName && isChat && (graphiteRows() || !currentMessageObject.isOutOwner() || currentMessageObject.isSupergroup() && currentMessageObject.isFromGroup() || currentMessageObject.isRepostPreview) ||
+            !pinnedTop && drawName && isChat && (!currentMessageObject.isOutOwner() || currentMessageObject.isSupergroup() && currentMessageObject.isFromGroup() || currentMessageObject.isRepostPreview) ||
             currentMessageObject.isImportedForward() && currentMessageObject.messageOwner.fwd_from.from_id == null
         );
     }
@@ -29315,16 +29307,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         return Theme.isCurrentThemeDark();
     }
 
-    // HORUSGRAM_DESIGN.md: with Graphite messages are lines, each with the
-    // avatar and the name of its sender, yours included, at the left.
-    public static boolean graphiteRows() {
-        return com.horusgram.HorusPalette.isGraphite();
-    }
-
     public boolean needDrawAvatar() {
-        if (graphiteRows() && isChat && !isSavedPreviewChat && currentMessageObject != null && currentMessageObject.needDrawAvatar()) {
-            return true;
-        }
         return (
             isChat && !isSavedPreviewChat && (!isThreadPost || isForum) && (
                 currentMessageObject != null && !currentMessageObject.isOutOwner() && currentMessageObject.needDrawAvatar()
