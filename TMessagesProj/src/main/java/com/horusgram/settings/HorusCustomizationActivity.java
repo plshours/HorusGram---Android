@@ -45,6 +45,7 @@ public class HorusCustomizationActivity extends BaseNekoSettingsActivity impleme
     private final int themeHorusRow = rowId++;
     private final int themeMacDarkRow = rowId++;
     private final int themeMacLightRow = rowId++;
+    private final int themeGraphiteRow = rowId++;
     private final int inTailRow = rowId++;
     private final int outTailRow = rowId++;
     private final int backgroundRow = rowId++;
@@ -76,6 +77,7 @@ public class HorusCustomizationActivity extends BaseNekoSettingsActivity impleme
         // The three themes HorusGram Desktop has, picked like a radio group.
         String activeAsset = Theme.getActiveTheme() != null ? Theme.getActiveTheme().assetName : null;
         items.add(UItem.asHeader(LocaleController.getString(R.string.HorusTheme)));
+        items.add(UItem.asCheck(themeGraphiteRow, LocaleController.getString(R.string.HorusThemeGraphite)).slug("themeGraphite").setChecked(HorusPalette.GRAPHITE_ASSET.equals(activeAsset)));
         items.add(UItem.asCheck(themeHorusRow, LocaleController.getString(R.string.HorusThemeMain)).slug("themeHorus").setChecked(HorusPalette.ASSET_NAME.equals(activeAsset)));
         items.add(UItem.asCheck(themeMacDarkRow, LocaleController.getString(R.string.HorusThemeMacDark)).slug("themeMacDark").setChecked(HorusPalette.MAC_DARK_ASSET.equals(activeAsset)));
         items.add(UItem.asCheck(themeMacLightRow, LocaleController.getString(R.string.HorusThemeMacLight)).slug("themeMacLight").setChecked(HorusPalette.MAC_LIGHT_ASSET.equals(activeAsset)));
@@ -112,8 +114,10 @@ public class HorusCustomizationActivity extends BaseNekoSettingsActivity impleme
     @Override
     protected void onItemClick(UItem item, View view, int position, float x, float y) {
         int id = item.id;
-        if (id == themeHorusRow || id == themeMacDarkRow || id == themeMacLightRow) {
-            String name = id == themeHorusRow
+        if (id == themeHorusRow || id == themeMacDarkRow || id == themeMacLightRow || id == themeGraphiteRow) {
+            String name = id == themeGraphiteRow
+                    ? HorusPalette.GRAPHITE_NAME
+                    : id == themeHorusRow
                     ? HorusPalette.THEME_NAME
                     : id == themeMacDarkRow
                     ? HorusPalette.MAC_DARK_NAME

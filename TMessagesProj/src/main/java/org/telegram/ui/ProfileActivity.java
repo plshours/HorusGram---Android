@@ -1267,6 +1267,12 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         private final Paint backgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
         public void setBackgroundColorId(MessagesController.PeerColor peerColor, boolean animated) {
+            // HORUSGRAM_DESIGN.md: with Graphite the header has no color of
+            // its own and the buttons are flat graphite tiles.
+            final boolean graphite = com.horusgram.HorusPalette.isGraphite();
+            if (graphite) {
+                peerColor = null;
+            }
             if (peerColor != null) {
                 hasColorById = true;
                 color1 = peerColor.getBgColor1(Theme.isCurrentThemeDark());
@@ -1291,6 +1297,12 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 } else {
                     emojiColor = PeerColorActivity.adaptProfileEmojiColor(getThemedColor(Theme.key_actionBarDefault));
                     btnColor = Theme.multAlpha(PeerColorActivity.adaptProfileEmojiColor(getThemedColor(Theme.key_actionBarDefault)), .15f);
+                }
+                if (graphite) {
+                    btnColor = ColorUtils.blendARGB(
+                            getThemedColor(Theme.key_windowBackgroundWhite),
+                            getThemedColor(Theme.key_windowBackgroundWhiteBlackText),
+                            0.08f);
                 }
             }
             if (!animated) {
@@ -3936,6 +3948,18 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     case ProfileActionsView.KEY_SHARE:
                         onShareClicked();
                         break;
+                    case ProfileActionsView.KEY_GRAM: {
+                        final TLRPC.User gramUser = getMessagesController().getUser(userId);
+                        if (gramUser != null) {
+                            presentFragment(new WalletSendEnterAmount(gramUser));
+                        }
+                        break;
+                    }
+                    case ProfileActionsView.KEY_MORE:
+                        if (otherItem != null) {
+                            otherItem.toggleSubMenu();
+                        }
+                        break;
                     case ProfileActionsView.KEY_NOTIFICATION:
                         onNotificationsClicked(true, x, y, actionsView);
                         break;
@@ -5808,6 +5832,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             } else {
                 if (actionsView != null) {
                     actionsView.set(ProfileActionsView.KEY_MESSAGE, true);
+                    final TLRPC.User gramUser = getMessagesController().getUser(userId);
+                    actionsView.set(ProfileActionsView.KEY_GRAM, gramUser != null
+                            && !gramUser.bot
+                            && !UserObject.isUserSelf(gramUser)
+                            && getMessagesController().config.walletAvailable.get());
                 }
                 writeButton.setImageResource(R.drawable.profile_newmsg);
                 writeButton.setContentDescription(LocaleController.getString(R.string.AccDescrOpenChat));

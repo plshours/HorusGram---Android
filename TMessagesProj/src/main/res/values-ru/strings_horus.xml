@@ -6,6 +6,7 @@
     <string name="HorusThemeMain">HorusGram</string>
     <string name="HorusThemeMacDark">macOS тёмная</string>
     <string name="HorusThemeMacLight">macOS светлая</string>
+    <string name="HorusThemeGraphite">Графит</string>
     <string name="HorusApplyTheme">Включить тему HorusGram</string>
     <string name="HorusApplyThemeInfo">Цвета ниже относятся к теме HorusGram и видны, пока она включена.</string>
     <string name="HorusBaseColors">Основные цвета</string>
@@ -139,4 +140,11 @@
     <string name="ExteraPluginInvalid">Этот файл — не плагин exteraGram.</string>
     <string name="ExteraPluginNoPython">На этом устройстве не запустился Python, поэтому плагины exteraGram работать не могут.</string>
     <string name="ExteraPluginLoading">Запускается…</string>
+    <!-- HORUSGRAM_DESIGN.md: the groups of the Graphite settings. -->
+    <string name="HorusGroupAccount">Аккаунт</string>
+    <string name="HorusGroupApp">Приложение</string>
+    <string name="HorusSettingsAppearance">Внешний вид</string>
+    <string name="HorusSettingsMore">Прочее</string>
+    <string name="HorusProfileGram">Gram</string>
+    <string name="HorusProfileMore">Ещё</string>
 </resources>
