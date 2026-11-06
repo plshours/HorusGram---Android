@@ -1,4 +1,4 @@
-# Usage: python tools/horusgram/graphite_theme.py TMessagesProj/src/main/assets/horusgram.attheme TMessagesProj/src/main/assets/horusgram_graphite.attheme
+# Usage: python Tools/horusgram/graphite_theme.py TMessagesProj/src/main/assets/horusgram.attheme TMessagesProj/src/main/assets/horusgram_graphite.attheme
 # Builds horusgram_graphite.attheme from horusgram.attheme: the blue-violet
 # colors of HorusGram become graphite, the light accent a warm near-white,
 # other hues stay. Keys drawn on the light accent turn dark.
