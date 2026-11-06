@@ -180,6 +180,12 @@ public final class HorusPalette {
         return ApplicationLoader.applicationContext.getSharedPreferences(PREFS, Activity.MODE_PRIVATE);
     }
 
+    // Graphite carries the shapes of HORUSGRAM_DESIGN.md along with its colors.
+    public static boolean isGraphite() {
+        Theme.ThemeInfo active = Theme.getActiveTheme();
+        return active != null && GRAPHITE_ASSET.equals(active.assetName);
+    }
+
     public static boolean isHorusTheme(Theme.ThemeInfo info) {
         return info != null && ASSET_NAME.equals(info.assetName);
     }

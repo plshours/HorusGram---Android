@@ -14973,6 +14973,10 @@ public class ChatActivityEnterView extends FrameLayout implements
         public boolean center;
 
         private final Paint backgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        private final Paint ringPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        {
+            ringPaint.setStyle(Paint.Style.STROKE);
+        }
 
         public SendButton(Context context, int resId, Theme.ResourcesProvider resourcesProvider) {
             this(context, resId, resourcesProvider, false);
@@ -15238,6 +15242,18 @@ public class ChatActivityEnterView extends FrameLayout implements
             checkBackgroundRect();
             if (isNewDesignSendButton) {
                 canvas.drawRoundRect(backgroundRect, dp(RADIUS), dp(RADIUS), backgroundPaint);
+                if (com.horusgram.HorusPalette.isGraphite()) {
+                    // HORUSGRAM_DESIGN.md: the main button keeps a ring, a line
+                    // set in from its edge that opens up while it is pressed.
+                    final float line = AndroidUtilities.dpf2(1.5f);
+                    final float gap = AndroidUtilities.dpf2(isPressed() ? 3 : 2) + line / 2f;
+                    ringPaint.setStrokeWidth(line);
+                    ringPaint.setColor(drawableColor);
+                    AndroidUtilities.rectTmp.set(backgroundRect);
+                    AndroidUtilities.rectTmp.inset(gap, gap);
+                    final float radius = Math.max(0, dp(RADIUS) - gap);
+                    canvas.drawRoundRect(AndroidUtilities.rectTmp, radius, radius, ringPaint);
+                }
             }
 
             final boolean inactive = isInactive();
@@ -15498,7 +15514,12 @@ public class ChatActivityEnterView extends FrameLayout implements
         private int drawableColor;
 
         public void updateColors() {
-            int color = isNewDesignSendButton ? Color.WHITE : Theme.getColor(Theme.key_chat_messagePanelSend, resourcesProvider);
+            // The plane is white on the send color, or dark when that color is
+            // light, as the accent of HorusGram Graphite is.
+            final int sendColor = Theme.getColor(Theme.key_chat_messagePanelSend, resourcesProvider);
+            int color = isNewDesignSendButton
+                    ? (ColorUtils.calculateLuminance(sendColor) > 0.6 ? 0xFF1A1A1A : Color.WHITE)
+                    : sendColor;
             if (color != drawableColor) {
                 drawableColor = color;
                 drawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
